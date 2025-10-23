@@ -1,8 +1,12 @@
-﻿using TerraUtil.RecipeGroups;
+﻿using AccessoriesPlus.Utilities.StuffToMoveToTerraUtil;
 
 namespace AccessoriesPlus.Content.RecipeGroups;
 
 public class FartBalloons : ModRecipeGroup
 {
-    public override List<int> ValidItems => new() { ItemID.FartInABalloon, ItemID.BalloonHorseshoeFart };
+    public override List<int> ValidItems =>
+    [
+        ItemID.FartInABalloon,
+        ItemID.BalloonHorseshoeFart,
+    ];
 }

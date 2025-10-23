@@ -20,8 +20,6 @@ public record WingStatsConfig
     public bool HAccelerationMultHoverTooltipEnabled = true;
     public bool NegatesFallDamageTooltipEnabled = true;
 
-    public override string ToString()
-    {
-        return null;
-    }
+    // TODO: properly fix the ToString stuff
+    public override string? ToString() => null;
 }

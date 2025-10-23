@@ -1,18 +1,19 @@
-﻿using AccessoriesPlus.Utilities;
-using TerraUtil.Edits;
+﻿using AccessoriesPlus.Content.InfoDisplays;
+using AccessoriesPlus.Utilities;
+using PDAConfig = AccessoriesPlus.Config.SubConfigs.PDAConfig;
 
 namespace AccessoriesPlus.Content.Edits;
 
-public class PDATintDetour : Detour
+public static class PDATintDetour
 {
-    public override void Apply()
+    public static void Apply()
     {
         On_NPC.GetNPCColorTintedByBuffs += delegate(On_NPC.orig_GetNPCColorTintedByBuffs orig, NPC self, Color npcColor)
         {
             var originalColor = orig(self, npcColor);
 
             // TODO: move the InfoDisplayActive util into a util file
-            if (!AccessoryInfoDisplay.LifeformAnalyzerNPCs.Contains(self) || !InfoDisplayUtils.IsActive(InfoDisplay.LifeformAnalyzer) || !PDAConfig.Instance.LifeformAnalyzerHighlight)
+            if (!ModContent.GetInstance<LifeformAnalyzerTweaks>().LifeformAnalyzerNPCs.Contains(self) || !InfoDisplayUtils.IsActive(InfoDisplay.LifeformAnalyzer) || !PDAConfig.Instance.LifeformAnalyzerHighlight)
                 return originalColor;
 
             // TODO: test the updated colour

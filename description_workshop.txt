@@ -47,6 +47,12 @@ If you find any bugs, have any suggestions, or want compatibility with other mod
 
 Additionally, the changelog can be found on the Steam Workshop Page under the change notes.
 
+[h1]Credits[/h1]
+Thanks to the following people:
+[list]
+[*]>>Terrarian<< - Mod icon
+[/list]
+
 [h1]Support[/h1]
 [img]https://i.imgur.com/W2c5CX6.gif[/img]
 Please consider rating and favouriting the mod on Steam, starring the [url=https://github.com/Destructor-Ben/AccessoriesPlus]Github Repository[/url] and joining the [url=https://discord.gg/uQzTRx2V8Y]Discord Server[/url] if you would like to support this mod.

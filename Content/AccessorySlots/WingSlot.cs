@@ -1,4 +1,6 @@
-﻿namespace AccessoriesPlus.Content.AccessorySlots;
+﻿using ServerConfig = AccessoriesPlus.Config.ServerConfig;
+
+namespace AccessoriesPlus.Content.AccessorySlots;
 
 public class WingSlot : AbstractAccessorySlot
 {

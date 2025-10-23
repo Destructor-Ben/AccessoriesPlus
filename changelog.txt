@@ -1,5 +1,4 @@
 [b]v{ModVersion} - {tMLBuildPurpose} tModLoader v{tMLVersion}[/b]
 [list]
-[*]Made the PDA config not expand when the config is opened
-[*]Changed forcing accessory slots to not be default behaviour
+[*]TODO: update this when I release
 [/list]

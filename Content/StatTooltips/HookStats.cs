@@ -1,4 +1,7 @@
-﻿namespace AccessoriesPlus.Content.StatTooltips;
+﻿using AccessoriesPlus.Config;
+using AccessoriesPlus.Utilities;
+
+namespace AccessoriesPlus.Content.StatTooltips;
 
 public class HookStats : Stats
 {
@@ -194,7 +197,7 @@ public class HookStats : Stats
 
     public static HookStats Get(Item item)
     {
-        if (!ClientConfig.Instance.StatsHooks || item.shoot <= ProjectileID.None || !Main.projHook[item.shoot])
+        if (!ClientConfig.Instance.HookStatsConfig.Enabled || item.shoot <= ProjectileID.None || !Main.projHook[item.shoot])
             return null;
 
         var stats = new HookStats();
@@ -244,19 +247,19 @@ public class HookStats : Stats
     {
         // Reach
         if (Reach != -1)
-            tooltips.Add(Util.GetTooltipLine("HookStats.Reach", (decimal)Util.Round(Reach / 16f, 0.1f)));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.Reach", (decimal)MathUtils.Round(Reach / 16f, 0.1f)));
         else
-            tooltips.Add(Util.GetTooltipLine("HookStats.ReachUnknown"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.ReachUnknown"));
 
         // Number of hooks
         if (NumHooks != -1)
-            tooltips.Add(Util.GetTooltipLine("HookStats.NumHooks", NumHooks));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.NumHooks", NumHooks));
         else
-            tooltips.Add(Util.GetTooltipLine("HookStats.NumHooksUnknown"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.NumHooksUnknown"));
 
         // Latching mode
         tooltips.Add(
-            Util.GetTooltipLine(
+            TooltipUtils.GetTooltipLine(
                 Latching switch
                 {
                     LatchingMode.Single       => "HookStats.LatchingSingle",
@@ -269,18 +272,18 @@ public class HookStats : Stats
 
         // Speeds
         if (ShootSpeed != -1)
-            tooltips.Add(Util.GetTooltipLine("HookStats.ShootSpeed", (decimal)Util.Round(ShootSpeed * Util.PPTToMPH), 0.1f));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.ShootSpeed", (decimal)MathUtils.Round(ShootSpeed * MathUtils.PPTToMPH), 0.1f));
         else
-            tooltips.Add(Util.GetTooltipLine("HookStats.ShootSpeedUnknown"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.ShootSpeedUnknown"));
 
         if (RetreatSpeed != -1)
-            tooltips.Add(Util.GetTooltipLine("HookStats.RetreatSpeed", (decimal)Util.Round(RetreatSpeed * Util.PPTToMPH), 0.1f));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.RetreatSpeed", (decimal)MathUtils.Round(RetreatSpeed * MathUtils.PPTToMPH), 0.1f));
         else
-            tooltips.Add(Util.GetTooltipLine("HookStats.RetreatSpeedUnknown"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.RetreatSpeedUnknown"));
 
         if (PullSpeed != -1)
-            tooltips.Add(Util.GetTooltipLine("HookStats.PullSpeed", (decimal)Util.Round(PullSpeed * Util.PPTToMPH), 0.1f));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.PullSpeed", (decimal)MathUtils.Round(PullSpeed * MathUtils.PPTToMPH), 0.1f));
         else
-            tooltips.Add(Util.GetTooltipLine("HookStats.PullSpeedUnknown"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.PullSpeedUnknown"));
     }
 }

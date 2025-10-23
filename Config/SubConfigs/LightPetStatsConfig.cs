@@ -15,4 +15,6 @@ public record LightPetStatsConfig
     public bool ControllableTooltipEnabled = true;
     public bool ExposesTreasureTooltipEnabled = true;
     public bool ExposesEnemiesTooltipEnabled = true;
+
+    public override string? ToString() => null;
 }

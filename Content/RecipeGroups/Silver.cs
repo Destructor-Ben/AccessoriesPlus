@@ -1,8 +1,12 @@
-﻿using TerraUtil.RecipeGroups;
+﻿using AccessoriesPlus.Utilities.StuffToMoveToTerraUtil;
 
 namespace AccessoriesPlus.Content.RecipeGroups;
 
 public class Silver : ModRecipeGroup
 {
-    public override List<int> ValidItems => new() { ItemID.SilverBar, ItemID.TungstenBar };
+    public override List<int> ValidItems =>
+    [
+        ItemID.SilverBar,
+        ItemID.TungstenBar,
+    ];
 }

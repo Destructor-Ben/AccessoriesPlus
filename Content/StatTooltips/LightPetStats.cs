@@ -1,4 +1,7 @@
-﻿namespace AccessoriesPlus.Content.StatTooltips;
+﻿using AccessoriesPlus.Config;
+using AccessoriesPlus.Utilities;
+
+namespace AccessoriesPlus.Content.StatTooltips;
 
 public class LightPetStats : Stats
 {
@@ -50,7 +53,7 @@ public class LightPetStats : Stats
 
     public static LightPetStats Get(Item item)
     {
-        return !ClientConfig.Instance.StatsLightPets || item.shoot <= ProjectileID.None || !ProjectileID.Sets.LightPet[item.shoot]
+        return !ClientConfig.Instance.LightPetStatsConfig.Enabled || item.shoot <= ProjectileID.None || !ProjectileID.Sets.LightPet[item.shoot]
             ? null
             : VanillaLightPetStats.GetValueOrDefault(item.type, new());
     }
@@ -58,17 +61,17 @@ public class LightPetStats : Stats
     public override void Apply(List<TooltipLine> tooltips)
     {
         if (Brightness != -1f)
-            tooltips.Add(Util.GetTooltipLine("LightPetStats.Brightness", (int)(Brightness * 100f)));
+            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.Brightness", (int)(Brightness * 100f)));
         else
-            tooltips.Add(Util.GetTooltipLine("LightPetStats.BrightnessUnknown"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.BrightnessUnknown"));
 
         if (Controllable)
-            tooltips.Add(Util.GetTooltipLine("LightPetStats.Controllable"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.Controllable"));
 
         if (ExposesEnemies)
-            tooltips.Add(Util.GetTooltipLine("LightPetStats.ExposesEnemies"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.ExposesEnemies"));
 
         if (ExposesTreasure)
-            tooltips.Add(Util.GetTooltipLine("LightPetStats.ExposesTreasure"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.ExposesTreasure"));
     }
 }

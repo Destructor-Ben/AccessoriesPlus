@@ -39,5 +39,9 @@ If you find any bugs, have any suggestions, or want compatibility with other mod
 
 Additionally, the changelog can be found on the Steam Workshop Page under the change notes.
 
+[c/8ffdff:Credits]
+Thanks to the following people:
+- >>Terrarian<< - Mod icon
+
 [c/8ffdff:Support]
 Please consider rating and favouriting the mod on Steam, starring the Github Repository (homepage), and joining the Discord Server (linked on the Steam Page) if you would like to support this mod.

@@ -1,13 +1,12 @@
-﻿using TerraUtil.Edits;
-
-namespace AccessoriesPlus.Content.Edits;
+﻿namespace AccessoriesPlus.Content.Edits;
 
 #pragma warning disable CS0162 // Unreachable code detected
 
-public class AutoDislodgeDetour : Detour
+public static class AutoDislodgeDetour
 {
-    public override void Apply()
+    public static void Apply()
     {
+        // TODO: finish at some point
         return;
 
         On_Player.GrappleMovement += delegate(On_Player.orig_GrappleMovement orig, Player self)

@@ -5,6 +5,9 @@ namespace AccessoriesPlus.Content.Items;
 // TODO: make the texture the moonlord heart, also just copy the Demon Heart
 public class MoonLordHeart : ModItem
 {
+    // TODO: automatically direct textures to assets folder, also make this a TerraUtil feature
+    public override string Texture => "AccessoriesPlus/Assets/Textures/Items/MoonLordHeart";
+
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.DemonHeart);

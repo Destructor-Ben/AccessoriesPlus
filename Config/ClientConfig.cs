@@ -1,10 +1,6 @@
 ﻿using AccessoriesPlus.Config.CustomConfigStuff;
+using AccessoriesPlus.Config.SubConfigs;
 using Terraria.ModLoader.Config;
-using HookStatsConfig = AccessoriesPlus.Config.SubConfigs.HookStatsConfig;
-using LightPetStatsConfig = AccessoriesPlus.Config.SubConfigs.LightPetStatsConfig;
-using MinecartStatsConfig = AccessoriesPlus.Config.SubConfigs.MinecartStatsConfig;
-using MountStatsConfig = AccessoriesPlus.Config.SubConfigs.MountStatsConfig;
-using WingStatsConfig = AccessoriesPlus.Config.SubConfigs.WingStatsConfig;
 
 namespace AccessoriesPlus.Config;
 

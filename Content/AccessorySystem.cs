@@ -2,15 +2,17 @@
 
 public partial class AccessorySystem : ModSystem
 {
-    public override void AddRecipes()
-    {
-        AddImprovedRecipies();
-        AddObtainabilityRecipes();
-    }
+    /* TODO: add back
+        public override void AddRecipes()
+        {
+            AddImprovedRecipies();
+            AddObtainabilityRecipes();
+        }
 
-    public override void PostAddRecipes()
-    {
-        RemoveImprovedRecipies();
-        RemoveObtainabilityRecipes();
-    }
+        public override void PostAddRecipes()
+        {
+            RemoveImprovedRecipies();
+            RemoveObtainabilityRecipes();
+        }
+        */
 }

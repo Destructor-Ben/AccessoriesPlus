@@ -1,21 +1,36 @@
-﻿using Terraria.Map;
+﻿using AccessoriesPlus.Config.SubConfigs;
+using AccessoriesPlus.Utilities;
+using Terraria.Map;
 
-namespace AccessoriesPlus.Content;
+namespace AccessoriesPlus.Content.InfoDisplays;
 
-public partial class AccessoryInfoDisplay : GlobalInfoDisplay
+public class MetalDetectorTweaks : GlobalInfoDisplay
 {
+    // TODO: remove statics
     private static Dictionary<int, (short, bool)> ModifiedTiles;
 
     // TODO: increasing priorities for gems
+    // TODO: allow changing priorities
     private const short GemPriority = 235;
     private const short HellstonePriority = 450;
 
-    private static void LoadMetalDetector()
+    public override void SetStaticDefaults()
+    {
+        SetSpelunkableTiles();
+    }
+
+    // TODO: inline this method call
+    public override void ModifyDisplayParameters(InfoDisplay currentDisplay, ref string displayValue, ref string displayName, ref Color displayColor, ref Color displayShadowColor)
+    {
+        ModifyMetalDetector(currentDisplay, ref displayValue, ref displayColor, ref displayShadowColor);
+    }
+
+    public override void Load()
     {
         ModifiedTiles = new();
     }
 
-    private static void UnloadMetalDetector()
+    public override void Unload()
     {
         // Resetting tileOreFinderPriority values
         if (ModifiedTiles is not null)
@@ -83,8 +98,8 @@ public partial class AccessoryInfoDisplay : GlobalInfoDisplay
         if (PDAConfig.Instance.MetalDetectorDistanceInfo)
         {
             string tileName = GetTileName(Main.SceneMetrics.bestOre, Main.SceneMetrics.ClosestOrePosition);
-            int distance = (int)Util.Round(Main.SceneMetrics.ClosestOrePosition.Value.ToWorldCoordinates().Distance(Main.LocalPlayer.Center) / 16f);
-            displayValue = Util.GetTextValue("InfoDisplays.FoundTreasure", tileName, distance);
+            int distance = (int)MathUtils.Round(Main.SceneMetrics.ClosestOrePosition.Value.ToWorldCoordinates().Distance(Main.LocalPlayer.Center) / 16f);
+            displayValue = Mods.AccessoriesPlus.InfoDisplays.FoundTreasure.GetTextValue(tileName, distance);
         }
     }
 
@@ -111,7 +126,7 @@ public partial class AccessoryInfoDisplay : GlobalInfoDisplay
             name = Lang.GetItemNameValue(ItemID.Hellstone);
 
         if (TileID.Sets.CountsAsGemTree[tileType])
-            name = Util.GetTextValue("InfoDisplays.GemTree");
+            name = Mods.AccessoriesPlus.InfoDisplays.GemTree.GetTextValue();
 
         if (string.IsNullOrEmpty(name))
             name = TileID.Search.GetName(tileType);

@@ -1,21 +1,14 @@
-﻿namespace AccessoriesPlus.Content;
+﻿using AccessoriesPlus.Config.SubConfigs;
+using AccessoriesPlus.Utilities;
 
-public partial class AccessoryInfoDisplay : GlobalInfoDisplay
+namespace AccessoriesPlus.Content.InfoDisplays;
+
+public class LifeformAnalyzerTweaks : GlobalInfoDisplay
 {
-    public static List<NPC> LifeformAnalyzerNPCs;
-    public static NPC BestNPC;
+    public List<NPC> LifeformAnalyzerNPCs = [];
+    public NPC? BestNPC = null;
 
-    private static void LoadLifeformAnalyzer()
-    {
-        LifeformAnalyzerNPCs = new();
-    }
-
-    private static void UnloadLifeformAnalyzer()
-    {
-        LifeformAnalyzerNPCs = null;
-    }
-
-    private static void ModifyLifeformAnalyzer(InfoDisplay currentDisplay, ref string displayValue, ref Color displayColor, ref Color displayShadowColor)
+    public override void ModifyDisplayParameters(InfoDisplay currentDisplay, ref string displayValue, ref string displayName, ref Color displayColor, ref Color displayShadowColor)
     {
         if (currentDisplay != InfoDisplay.LifeformAnalyzer)
             return;
@@ -29,7 +22,7 @@ public partial class AccessoryInfoDisplay : GlobalInfoDisplay
         if (PDAConfig.Instance.LifeformAnalyzerDistanceInfo && (BestNPC?.active ?? false))
         {
             var npc = Main.npc[Main.LocalPlayer.accCritterGuideNumber];
-            displayValue = Util.GetTextValue("InfoDisplays.FoundRareCreature", npc.GivenOrTypeName, (int)Util.Round(npc.Distance(Main.LocalPlayer.Center) / 16f));
+            displayValue = Mods.AccessoriesPlus.InfoDisplays.FoundRareCreature.GetTextValue(npc.GivenOrTypeName, (int)MathUtils.Round(npc.Distance(Main.LocalPlayer.Center) / 16f));
 
             displayColor = Main.MouseTextColorReal;
             displayShadowColor = Color.Black;
@@ -42,7 +35,7 @@ public partial class AccessoryInfoDisplay : GlobalInfoDisplay
         }
     }
 
-    private static void SearchNPCS()
+    private void SearchNPCS()
     {
         BestNPC = null;
         LifeformAnalyzerNPCs.Clear();

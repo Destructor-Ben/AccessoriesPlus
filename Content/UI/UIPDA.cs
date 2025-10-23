@@ -1,4 +1,5 @@
-﻿using AccessoriesPlus.Utilities;
+﻿using AccessoriesPlus.Content.InfoDisplays;
+using AccessoriesPlus.Utilities;
 using AccessoriesPlus.Utilities.StuffToMoveToTerraUtil;
 using Terraria.UI;
 using Terraria.UI.Chat;
@@ -86,7 +87,7 @@ public class UIPDA : Interface
         // Lifeform analyzer
         if (PDAConfig.Instance.LifeformAnalyzerArrows && InfoDisplayUtils.IsActive(InfoDisplay.LifeformAnalyzer))
         {
-            foreach (var npc in AccessoryInfoDisplay.LifeformAnalyzerNPCs)
+            foreach (var npc in ModContent.GetInstance<LifeformAnalyzerTweaks>().LifeformAnalyzerNPCs)
             {
                 if (npc.active)
                     DrawNPCArrow(spriteBatch, npc);
@@ -241,7 +242,7 @@ public class UIPDA : Interface
         var tex = GetTileTexture(target);
 
         // Drawing the background and arrow
-        string name = AccessoryInfoDisplay.GetTileName(target.TileType, new Point(x, y));
+        string name = MetalDetectorTweaks.GetTileName(target.TileType, new Point(x, y));
         DrawArrow(sb, position, rotation, name, new Point(x, y).ToWorldCoordinates());
 
         // Drawing the tile
@@ -324,7 +325,7 @@ public class UIPDA : Interface
             return;
 
         int distance = (int)MathUtils.Round(targetPos.Distance(Main.LocalPlayer.Center) / 16f);
-        string distanceText = InfoDisplays.TilesDistance.GetTextValue(distance, distance); // TODO: distance shouldn't be repeated
+        string distanceText = Mods.AccessoriesPlus.InfoDisplays.TilesDistance.GetTextValue(distance);
 
         UIUtils.ResetMouseText();
         UIUtils.MouseText(name + " - " + distanceText, true);

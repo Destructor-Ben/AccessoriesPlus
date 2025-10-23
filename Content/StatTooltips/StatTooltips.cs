@@ -1,4 +1,6 @@
-﻿namespace AccessoriesPlus.Content.StatTooltips;
+﻿using AccessoriesPlus.Utilities;
+
+namespace AccessoriesPlus.Content.StatTooltips;
 
 public class StatTooltips : GlobalItem
 {

@@ -23,4 +23,6 @@ public record MinecartStatsConfig
     public int HeightBoost { get; private set; } = 0;
     public float FallDamageMult { get; private set; } = 0f;
     public bool BoostedMinecart { get; private set; } = false;
+
+    public override string? ToString() => null;
 }

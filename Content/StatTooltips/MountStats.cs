@@ -1,4 +1,6 @@
-﻿namespace AccessoriesPlus.Content.StatTooltips;
+﻿using AccessoriesPlus.Utilities;
+
+namespace AccessoriesPlus.Content.StatTooltips;
 
 public class MountStats : Stats
 {
@@ -24,11 +26,16 @@ public class MountStats : Stats
         var stats = new MountStats();
         var vanillaStats = Mount.mounts[item.mountType];
 
+        if (true)
+            return null;
+
+        /* TODO: fix config
+
         if (!ClientConfig.Instance.StatsMinecarts && vanillaStats.Minecart)
             return null;
 
         if (!ClientConfig.Instance.StatsMounts && !vanillaStats.Minecart)
-            return null;
+            return null;*/
 
         // Flight time
         stats.FlightTime = vanillaStats.flightTimeMax;
@@ -77,41 +84,41 @@ public class MountStats : Stats
     {
         // Flight
         if (FlightTime > 0)
-            tooltips.Add(Util.GetTooltipLine("MountStats.FlightTime", (decimal)Util.Round(FlightTime / 60f, 0.1f)));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.FlightTime", (decimal)MathUtils.Round(FlightTime / 60f, 0.1f)));
 
         // Run speeds
         if (RunSpeed != 0f)
-            tooltips.Add(Util.GetTooltipLine("MountStats.RunSpeed", (decimal)Util.Round(RunSpeed * Util.PPTToMPH, 0.1f)));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.RunSpeed", (decimal)MathUtils.Round(RunSpeed * MathUtils.PPTToMPH, 0.1f)));
 
         if (SwimSpeed != 0f)
-            tooltips.Add(Util.GetTooltipLine("MountStats.SwimSpeed", (decimal)Util.Round(SwimSpeed * Util.PPTToMPH, 0.1f)));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.SwimSpeed", (decimal)MathUtils.Round(SwimSpeed * MathUtils.PPTToMPH, 0.1f)));
 
         if (Acceleration != 0f)
-            tooltips.Add(Util.GetTooltipLine("MountStats.Acceleration", (decimal)Util.Round(Acceleration * Util.PPTPTToMPHPS, 0.1f)));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.Acceleration", (decimal)MathUtils.Round(Acceleration * MathUtils.PPTPTToMPHPS, 0.1f)));
 
         // Jumping
         if (JumpSpeed != 0f)
-            tooltips.Add(Util.GetTooltipLine("MountStats.JumpSpeed", (decimal)Util.Round(JumpSpeed * Util.PPTToMPH, 0.1f)));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.JumpSpeed", (decimal)MathUtils.Round(JumpSpeed * MathUtils.PPTToMPH, 0.1f)));
 
         if (JumpHeight != 0)
-            tooltips.Add(Util.GetTooltipLine("MountStats.JumpHeight", (decimal)Util.Round(JumpHeight / 16f, 0.1f))); // TODO: is this correct?
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.JumpHeight", (decimal)MathUtils.Round(JumpHeight / 16f, 0.1f))); // TODO: is this correct?
 
         // Misc
         if (HeightBoost != 0)
-            tooltips.Add(Util.GetTooltipLine("MountStats.HeightBoost", (decimal)Util.Round((HeightBoost + 42) / 16f, 0.1f))); // 42 is player height
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.HeightBoost", (decimal)MathUtils.Round((HeightBoost + 42) / 16f, 0.1f))); // 42 is player height
 
         if (FallDamageMult != 1f)
-            tooltips.Add(Util.GetTooltipLine("MountStats.FallDamageMult", FallDamageMult));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.FallDamageMult", FallDamageMult));
 
         // Non stat lines
         if (CanHover)
-            tooltips.Add(Util.GetTooltipLine("MountStats.CanHover"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.CanHover"));
 
         if (AutoJump)
-            tooltips.Add(Util.GetTooltipLine("MountStats.AutoJump"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.AutoJump"));
 
         // Bosted for minecarts
         if (BoostedMinecart)
-            tooltips.Add(Util.GetTooltipLine("MountStats.BoostedMinecart"));
+            tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.BoostedMinecart"));
     }
 }

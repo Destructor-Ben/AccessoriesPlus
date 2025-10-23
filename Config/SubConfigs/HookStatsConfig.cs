@@ -17,4 +17,6 @@ public record HookStatsConfig
     public bool ShootSpeedTooltipEnabled = true;
     public bool RetreatSpeedTooltipEnabled = true;
     public bool PullSpeedTooltipEnabled = true;
+
+    public override string? ToString() => null;
 }
