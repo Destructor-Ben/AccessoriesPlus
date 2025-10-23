@@ -12,6 +12,6 @@ public class BootSlot : AbstractAccessorySlot
 
     public override bool IsEnabled()
     {
-        return Config.Instance.SlotBoots;
+        return ServerConfig.Instance.SlotBoots;
     }
 }

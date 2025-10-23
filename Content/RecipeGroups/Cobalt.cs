@@ -4,5 +4,5 @@ namespace AccessoriesPlus.Content.RecipeGroups;
 
 public class Cobalt : ModRecipeGroup
 {
-    public override List<int> ValidItems => new() { ItemID.CobaltBar, ItemID.PalladiumBar };
+    public override List<int> ValidItems => [ItemID.CobaltBar, ItemID.PalladiumBar];
 }

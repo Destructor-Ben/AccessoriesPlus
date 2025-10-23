@@ -12,6 +12,6 @@ public class WingSlot : AbstractAccessorySlot
 
     public override bool IsEnabled()
     {
-        return Config.Instance.SlotWings;
+        return ServerConfig.Instance.SlotWings;
     }
 }

@@ -240,3 +240,433 @@ PDAConfig: {
 		Tooltip: Allows the [i:LifeformAnalyzer] Lifeform Analyzer to prevent tracking of certain creatures
 	}
 }
+
+ClientConfig: {
+	DisplayName: Client Config
+	Headers.StatTooltips: Stat Tooltips
+
+	WingStatsConfig: {
+		Label: Wing Stats
+		Tooltip: ""
+	}
+
+	HookStatsConfig: {
+		Label: Hook Stats
+		Tooltip: ""
+	}
+
+	LightPetStatsConfig: {
+		Label: Light Pet Stats
+		Tooltip: ""
+	}
+
+	MinecartStatsConfig: {
+		Label: Minecart Stats
+		Tooltip: ""
+	}
+
+	MountStatsConfig: {
+		Label: Mount Stats
+		Tooltip: ""
+	}
+}
+
+WingStatsConfig: {
+	Tooltip: ""
+
+	Enabled: {
+		Label: Enabled
+		Tooltip: ""
+	}
+
+	WingTooltipWhitelist: {
+		Label: Wing Tooltip Whitelist
+		Tooltip: ""
+	}
+
+	WingTooltipBlacklist: {
+		Label: Wing Tooltip Blacklist
+		Tooltip: ""
+	}
+
+	FlightTimeTooltipEnabled: {
+		Label: Flight Time Tooltip Enabled
+		Tooltip: ""
+	}
+
+	FlightHeightTooltipEnabled: {
+		Label: Flight Height Tooltip Enabled
+		Tooltip: ""
+	}
+
+	MaxHSpeedTooltipEnabled: {
+		Label: Max H Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	HAccelerationMultTooltipEnabled: {
+		Label: H Acceleration Mult Tooltip Enabled
+		Tooltip: ""
+	}
+
+	CanHoverTooltipEnabled: {
+		Label: Can Hover Tooltip Enabled
+		Tooltip: ""
+	}
+
+	MaxHSpeedHoverMultTooltipEnabled: {
+		Label: Max H Speed Hover Mult Tooltip Enabled
+		Tooltip: ""
+	}
+
+	HAccelerationMultHoverTooltipEnabled: {
+		Label: H Acceleration Mult Hover Tooltip Enabled
+		Tooltip: ""
+	}
+
+	NegatesFallDamageTooltipEnabled: {
+		Label: Negates Fall Damage Tooltip Enabled
+		Tooltip: ""
+	}
+
+	Whitelist: {
+		Label: Whitelist
+		Tooltip: ""
+	}
+
+	Blacklist: {
+		Label: Blacklist
+		Tooltip: ""
+	}
+}
+
+ServerConfig: {
+	DisplayName: Server Config
+
+	Headers: {
+		ImprovedAccessories: Improved Accessories Header
+		AccessorySlots: Accessory Slots Header
+		Obtainability: Obtainability Header
+	}
+
+	ImprovedTerrasparkBoots: {
+		Label: Improved Terraspark Boots
+		Tooltip: ""
+	}
+
+	ImprovedAnkhShield: {
+		Label: Improved Ankh Shield
+		Tooltip: ""
+	}
+
+	ImprovedHorseshoeBundle: {
+		Label: Improved Horseshoe Bundle
+		Tooltip: ""
+	}
+
+	ImprovedHandOfCreation: {
+		Label: Improved Hand Of Creation
+		Tooltip: ""
+	}
+
+	ImprovedPDA: {
+		Label: Improved P D A
+		Tooltip: ""
+	}
+
+	SlotMoonlord: {
+		Label: Slot Moonlord
+		Tooltip: ""
+	}
+
+	SlotWings: {
+		Label: Slot Wings
+		Tooltip: ""
+	}
+
+	SlotShield: {
+		Label: Slot Shield
+		Tooltip: ""
+	}
+
+	SlotBoots: {
+		Label: Slot Boots
+		Tooltip: ""
+	}
+
+	SlotForceWings: {
+		Label: Slot Force Wings
+		Tooltip: ""
+	}
+
+	SlotForceShields: {
+		Label: Slot Force Shields
+		Tooltip: ""
+	}
+
+	SlotForceBoots: {
+		Label: Slot Force Boots
+		Tooltip: ""
+	}
+
+	ObtainabilityRecipes: {
+		Label: Obtainability Recipes
+		Tooltip: ""
+	}
+
+	ObtainabilityShimmer: {
+		Label: Obtainability Shimmer
+		Tooltip: ""
+	}
+
+	ObtainabilityNPCDrops: {
+		Label: Obtainability N P C Drops
+		Tooltip: ""
+	}
+
+	ObtainabilityTravellingMerchant: {
+		Label: Obtainability Travelling Merchant
+		Tooltip: ""
+	}
+
+	ObtainabilityPresents: {
+		Label: Obtainability Presents
+		Tooltip: ""
+	}
+}
+
+HookStatsConfig: {
+	Tooltip: ""
+
+	Enabled: {
+		Label: Enabled
+		Tooltip: ""
+	}
+
+	Whitelist: {
+		Label: Whitelist
+		Tooltip: ""
+	}
+
+	Blacklist: {
+		Label: Blacklist
+		Tooltip: ""
+	}
+
+	ReachTooltipEnabled: {
+		Label: Reach Tooltip Enabled
+		Tooltip: ""
+	}
+
+	NumHooksTooltipEnabled: {
+		Label: Num Hooks Tooltip Enabled
+		Tooltip: ""
+	}
+
+	LatchingTooltipEnabled: {
+		Label: Latching Tooltip Enabled
+		Tooltip: ""
+	}
+
+	ShootSpeedTooltipEnabled: {
+		Label: Shoot Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	RetreatSpeedTooltipEnabled: {
+		Label: Retreat Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	PullSpeedTooltipEnabled: {
+		Label: Pull Speed Tooltip Enabled
+		Tooltip: ""
+	}
+}
+
+LightPetStatsConfig: {
+	Tooltip: ""
+
+	Enabled: {
+		Label: Enabled
+		Tooltip: ""
+	}
+
+	Whitelist: {
+		Label: Whitelist
+		Tooltip: ""
+	}
+
+	Blacklist: {
+		Label: Blacklist
+		Tooltip: ""
+	}
+
+	BrightnessTooltipEnabled: {
+		Label: Brightness Tooltip Enabled
+		Tooltip: ""
+	}
+
+	ControllableTooltipEnabled: {
+		Label: Controllable Tooltip Enabled
+		Tooltip: ""
+	}
+
+	ExposesTreasureTooltipEnabled: {
+		Label: Exposes Treasure Tooltip Enabled
+		Tooltip: ""
+	}
+
+	ExposesEnemiesTooltipEnabled: {
+		Label: Exposes Enemies Tooltip Enabled
+		Tooltip: ""
+	}
+}
+
+MinecartStatsConfig: {
+	Tooltip: ""
+
+	Enabled: {
+		Label: Enabled
+		Tooltip: ""
+	}
+
+	Whitelist: {
+		Label: Whitelist
+		Tooltip: ""
+	}
+
+	Blacklist: {
+		Label: Blacklist
+		Tooltip: ""
+	}
+
+	FlightTime: {
+		Label: Flight Time
+		Tooltip: ""
+	}
+
+	CanHover: {
+		Label: Can Hover
+		Tooltip: ""
+	}
+
+	RunSpeed: {
+		Label: Run Speed
+		Tooltip: ""
+	}
+
+	SwimSpeed: {
+		Label: Swim Speed
+		Tooltip: ""
+	}
+
+	Acceleration: {
+		Label: Acceleration
+		Tooltip: ""
+	}
+
+	JumpSpeed: {
+		Label: Jump Speed
+		Tooltip: ""
+	}
+
+	JumpHeight: {
+		Label: Jump Height
+		Tooltip: ""
+	}
+
+	AutoJump: {
+		Label: Auto Jump
+		Tooltip: ""
+	}
+
+	HeightBoost: {
+		Label: Height Boost
+		Tooltip: ""
+	}
+
+	FallDamageMult: {
+		Label: Fall Damage Mult
+		Tooltip: ""
+	}
+
+	BoostedMinecart: {
+		Label: Boosted Minecart
+		Tooltip: ""
+	}
+}
+
+MountStatsConfig: {
+	Tooltip: ""
+
+	Enabled: {
+		Label: Enabled
+		Tooltip: ""
+	}
+
+	Whitelist: {
+		Label: Whitelist
+		Tooltip: ""
+	}
+
+	Blacklist: {
+		Label: Blacklist
+		Tooltip: ""
+	}
+
+	FlightTime: {
+		Label: Flight Time
+		Tooltip: ""
+	}
+
+	CanHover: {
+		Label: Can Hover
+		Tooltip: ""
+	}
+
+	RunSpeed: {
+		Label: Run Speed
+		Tooltip: ""
+	}
+
+	SwimSpeed: {
+		Label: Swim Speed
+		Tooltip: ""
+	}
+
+	Acceleration: {
+		Label: Acceleration
+		Tooltip: ""
+	}
+
+	JumpSpeed: {
+		Label: Jump Speed
+		Tooltip: ""
+	}
+
+	JumpHeight: {
+		Label: Jump Height
+		Tooltip: ""
+	}
+
+	AutoJump: {
+		Label: Auto Jump
+		Tooltip: ""
+	}
+
+	HeightBoost: {
+		Label: Height Boost
+		Tooltip: ""
+	}
+
+	FallDamageMult: {
+		Label: Fall Damage Mult
+		Tooltip: ""
+	}
+
+	BoostedMinecart: {
+		Label: Boosted Minecart
+		Tooltip: ""
+	}
+}

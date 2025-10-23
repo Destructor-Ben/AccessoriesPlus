@@ -12,6 +12,6 @@ public class ShieldSlot : AbstractAccessorySlot
 
     public override bool IsEnabled()
     {
-        return Config.Instance.SlotShield;
+        return ServerConfig.Instance.SlotShield;
     }
 }

@@ -43,10 +43,10 @@ To find the recipes changed, use the [url=https://steamcommunity.com/sharedfiles
 [/list]
 
 [h1]Contact[/h1]
-If you find any bugs, have any suggestions, or want compatibility with other mods, please let me know on the mod's Steam Page, [url=https://github.com/Destructor-Ben/Accessories-Plus]Github Repository[/url] or [url=https://discord.gg/uQzTRx2V8Y]Discord Server[/url]
+If you find any bugs, have any suggestions, or want compatibility with other mods, please let me know on the mod's Steam Page, [url=https://github.com/Destructor-Ben/AccessoriesPlus]Github Repository[/url] or [url=https://discord.gg/uQzTRx2V8Y]Discord Server[/url]
 
 Additionally, the changelog can be found on the Steam Workshop Page under the change notes.
 
 [h1]Support[/h1]
 [img]https://i.imgur.com/W2c5CX6.gif[/img]
-Please consider rating and favouriting the mod on Steam, starring the [url=https://github.com/Destructor-Ben/Accessories-Plus]Github Repository[/url] and joining the [url=https://discord.gg/uQzTRx2V8Y]Discord Server[/url] if you would like to support this mod.
+Please consider rating and favouriting the mod on Steam, starring the [url=https://github.com/Destructor-Ben/AccessoriesPlus]Github Repository[/url] and joining the [url=https://discord.gg/uQzTRx2V8Y]Discord Server[/url] if you would like to support this mod.
