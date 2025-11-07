@@ -2,18 +2,15 @@
 
 namespace AccessoriesPlus.Content.AccessorySlots;
 
-public class WingSlot : AbstractAccessorySlot
+public class WingSlot : SpecialAccessorySlot
 {
-    public override int FunctionalItemID => ItemID.CreativeWings;
-    public override int VanityItemID => ItemID.WingsSolar;
-
     public override bool IsValidItem(Item item)
     {
-        return item.wingSlot > 0;
+        return ServerConfig.Instance.SlotWings.IsValidItem(item.wingSlot > 0, item.type);
     }
 
     public override bool IsEnabled()
     {
-        return ServerConfig.Instance.SlotWings;
+        return ServerConfig.Instance.SlotWings.Enabled;
     }
 }

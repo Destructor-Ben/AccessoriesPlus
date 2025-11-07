@@ -1,7 +1,9 @@
-﻿using Terraria.ModLoader.Config;
+﻿using AccessoriesPlus.Config.CustomConfigStuff;
+using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Config.SubConfigs;
 
+[SubConfig]
 public record LightPetStatsConfig
 {
     public static LightPetStatsConfig Instance => ClientConfig.Instance.LightPetStatsConfig;
@@ -15,6 +17,4 @@ public record LightPetStatsConfig
     public bool ControllableTooltipEnabled = true;
     public bool ExposesTreasureTooltipEnabled = true;
     public bool ExposesEnemiesTooltipEnabled = true;
-
-    public override string? ToString() => null;
 }

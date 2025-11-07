@@ -1,7 +1,9 @@
-﻿using Terraria.ModLoader.Config;
+﻿using AccessoriesPlus.Config.CustomConfigStuff;
+using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Config.SubConfigs;
 
+[SubConfig]
 public record PDAConfig
 {
     public static PDAConfig Instance => ServerConfig.Instance.ImprovedPDA;
@@ -24,6 +26,8 @@ public record PDAConfig
     public bool LifeformAnalyzerDistanceInfo = true;
     public bool LifeformAnalyzerArrows = true;
     public bool LifeformAnalyzerHighlight = true;
+
+    // TODO: are these 2 needed?
     public bool UseNPCWhitelist = true;
     public bool UseNPCBlacklist = true;
 

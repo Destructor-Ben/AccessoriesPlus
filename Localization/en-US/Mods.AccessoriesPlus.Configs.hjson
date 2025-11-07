@@ -1,5 +1,5 @@
-Config: {
-	DisplayName: Config
+ServerConfig: {
+	DisplayName: Server Config
 
 	Headers: {
 		ImprovedAccessories: Improved Accessories
@@ -43,74 +43,37 @@ Config: {
 		Tooltip: ""
 	}
 
-	// Improved Mounts
-	
-	// Improved Minecarts
-	
-	// Improved Pets
-	
-	// Improved Grappling Hooks
-	
 	// Accessory Slots
-	SlotMoonlord: {
-		Label: "[i:BossMaskMoonlord] Post-Moonlord Accessory Slot"
-		Tooltip: Enables an extra accessory slot post Moonlord
+	SlotMoonLord: {
+		Label: "[i:BossMaskMoonlord] Post Moon Lord Accessory Slot"
+		Tooltip: Enables an extra accessory slot after the Moon Lord is defeated
 	}
 
 	SlotWings: {
 		Label: "[i:WingsSolar] Wing Slot"
-		Tooltip: Enables an accessory slot for only wings
+		Tooltip:
+			'''
+			Options for a wings-only accessory slot
+			Automatically whitelists items that are wings
+			'''
 	}
 
 	SlotShield: {
 		Label: "[i:AnkhShield] Shield Slot"
-		Tooltip: Enables an accessory slot for only shields
+		Tooltip:
+			'''
+			Options for a shields-only accessory slot
+			Automatically whitelists items that are shields
+			'''
 	}
 
 	SlotBoots: {
 		Label: "[i:TerrasparkBoots] Boot Slot"
-		Tooltip: Enables an accessory slot for only boots
-	}
-
-	SlotForceWings: {
-		Label: "[i:CreativeWings] Force Wing Slot"
-		Tooltip: Forces wings to be placed in the wing slot
-	}
-
-	SlotForceShields: {
-		Label: "[i:ObsidianShield] Force Shield Slot"
-		Tooltip: Forces shields to be placed in the shield slot
-	}
-
-	SlotForceBoots: {
-		Label: "[i:HermesBoots] Force Boot Slot"
-		Tooltip: Forces boots to be placed in the boot slot
-	}
-
-	// Stat Tooltips
-	StatsWings: {
-		Label: "[i:WingsSolar] Wing Stats"
-		Tooltip: Enables wing stats
-	}
-
-	StatsHooks: {
-		Label: "[i:LunarHook] Hook Stats"
-		Tooltip: Enables hook stats
-	}
-
-	StatsLightPets: {
-		Label: "[i:SuspiciousLookingTentacle] Light Pet Stats"
-		Tooltip: Enables light pet stats
-	}
-
-	StatsMinecarts: {
-		Label: "[i:MeowmereMinecart] Minecart Stats"
-		Tooltip: Enables minecart stats
-	}
-
-	StatsMounts: {
-		Label: "[i:DrillContainmentUnit] Mount Stats"
-		Tooltip: Enables mount stats
+		Tooltip:
+			'''
+			Options for a boots-only accessory slot
+			Automatically whitelists items that are boots
+			'''
 	}
 
 	// Obtainability
@@ -155,6 +118,36 @@ Config: {
 			Adds a recipe for the Hand Warmer
 			Makes the Mechanic sell the Toolbox
 			'''
+	}
+}
+
+ClientConfig: {
+	DisplayName: Client Config
+	Headers.StatTooltips: Stat Tooltips
+
+	WingStatsConfig: {
+		Label: "[i:WingsSolar] Wing Stats"
+		Tooltip: ""
+	}
+
+	HookStatsConfig: {
+		Label: "[i:LunarHook] Hook Stats"
+		Tooltip: ""
+	}
+
+	LightPetStatsConfig: {
+		Label: "[i:SuspiciousLookingTentacle] Light Pet Stats"
+		Tooltip: ""
+	}
+
+	MinecartStatsConfig: {
+		Label: "[i:MeowmereMinecart] Minecart Stats"
+		Tooltip: ""
+	}
+
+	MountStatsConfig: {
+		Label: "[i:DrillContainmentUnit] Mount Stats"
+		Tooltip: ""
 	}
 }
 
@@ -241,36 +234,7 @@ PDAConfig: {
 	}
 }
 
-ClientConfig: {
-	DisplayName: Client Config
-	Headers.StatTooltips: Stat Tooltips
-
-	WingStatsConfig: {
-		Label: Wing Stats
-		Tooltip: ""
-	}
-
-	HookStatsConfig: {
-		Label: Hook Stats
-		Tooltip: ""
-	}
-
-	LightPetStatsConfig: {
-		Label: Light Pet Stats
-		Tooltip: ""
-	}
-
-	MinecartStatsConfig: {
-		Label: Minecart Stats
-		Tooltip: ""
-	}
-
-	MountStatsConfig: {
-		Label: Mount Stats
-		Tooltip: ""
-	}
-}
-
+// TODO: regenerate all of the below
 WingStatsConfig: {
 	Tooltip: ""
 
@@ -336,101 +300,6 @@ WingStatsConfig: {
 
 	Blacklist: {
 		Label: Blacklist
-		Tooltip: ""
-	}
-}
-
-ServerConfig: {
-	DisplayName: Server Config
-
-	Headers: {
-		ImprovedAccessories: Improved Accessories Header
-		AccessorySlots: Accessory Slots Header
-		Obtainability: Obtainability Header
-	}
-
-	ImprovedTerrasparkBoots: {
-		Label: Improved Terraspark Boots
-		Tooltip: ""
-	}
-
-	ImprovedAnkhShield: {
-		Label: Improved Ankh Shield
-		Tooltip: ""
-	}
-
-	ImprovedHorseshoeBundle: {
-		Label: Improved Horseshoe Bundle
-		Tooltip: ""
-	}
-
-	ImprovedHandOfCreation: {
-		Label: Improved Hand Of Creation
-		Tooltip: ""
-	}
-
-	ImprovedPDA: {
-		Label: Improved P D A
-		Tooltip: ""
-	}
-
-	SlotMoonlord: {
-		Label: Slot Moonlord
-		Tooltip: ""
-	}
-
-	SlotWings: {
-		Label: Slot Wings
-		Tooltip: ""
-	}
-
-	SlotShield: {
-		Label: Slot Shield
-		Tooltip: ""
-	}
-
-	SlotBoots: {
-		Label: Slot Boots
-		Tooltip: ""
-	}
-
-	SlotForceWings: {
-		Label: Slot Force Wings
-		Tooltip: ""
-	}
-
-	SlotForceShields: {
-		Label: Slot Force Shields
-		Tooltip: ""
-	}
-
-	SlotForceBoots: {
-		Label: Slot Force Boots
-		Tooltip: ""
-	}
-
-	ObtainabilityRecipes: {
-		Label: Obtainability Recipes
-		Tooltip: ""
-	}
-
-	ObtainabilityShimmer: {
-		Label: Obtainability Shimmer
-		Tooltip: ""
-	}
-
-	ObtainabilityNPCDrops: {
-		Label: Obtainability N P C Drops
-		Tooltip: ""
-	}
-
-	ObtainabilityTravellingMerchant: {
-		Label: Obtainability Travelling Merchant
-		Tooltip: ""
-	}
-
-	ObtainabilityPresents: {
-		Label: Obtainability Presents
 		Tooltip: ""
 	}
 }
@@ -595,6 +464,61 @@ MinecartStatsConfig: {
 		Label: Boosted Minecart
 		Tooltip: ""
 	}
+
+	FlightTimeTooltipEnabled: {
+		Label: Flight Time Tooltip Enabled
+		Tooltip: ""
+	}
+
+	CanHoverTooltipEnabled: {
+		Label: Can Hover Tooltip Enabled
+		Tooltip: ""
+	}
+
+	RunSpeedTooltipEnabled: {
+		Label: Run Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	SwimSpeedTooltipEnabled: {
+		Label: Swim Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	AccelerationTooltipEnabled: {
+		Label: Acceleration Tooltip Enabled
+		Tooltip: ""
+	}
+
+	JumpSpeedTooltipEnabled: {
+		Label: Jump Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	JumpHeightTooltipEnabled: {
+		Label: Jump Height Tooltip Enabled
+		Tooltip: ""
+	}
+
+	AutoJumpTooltipEnabled: {
+		Label: Auto Jump Tooltip Enabled
+		Tooltip: ""
+	}
+
+	HeightBoostTooltipEnabled: {
+		Label: Height Boost Tooltip Enabled
+		Tooltip: ""
+	}
+
+	FallDamageMultTooltipEnabled: {
+		Label: Fall Damage Mult Tooltip Enabled
+		Tooltip: ""
+	}
+
+	BoostedMinecartTooltipEnabled: {
+		Label: Boosted Minecart Tooltip Enabled
+		Tooltip: ""
+	}
 }
 
 MountStatsConfig: {
@@ -668,5 +592,79 @@ MountStatsConfig: {
 	BoostedMinecart: {
 		Label: Boosted Minecart
 		Tooltip: ""
+	}
+
+	FlightTimeTooltipEnabled: {
+		Label: Flight Time Tooltip Enabled
+		Tooltip: ""
+	}
+
+	CanHoverTooltipEnabled: {
+		Label: Can Hover Tooltip Enabled
+		Tooltip: ""
+	}
+
+	RunSpeedTooltipEnabled: {
+		Label: Run Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	SwimSpeedTooltipEnabled: {
+		Label: Swim Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	AccelerationTooltipEnabled: {
+		Label: Acceleration Tooltip Enabled
+		Tooltip: ""
+	}
+
+	JumpSpeedTooltipEnabled: {
+		Label: Jump Speed Tooltip Enabled
+		Tooltip: ""
+	}
+
+	JumpHeightTooltipEnabled: {
+		Label: Jump Height Tooltip Enabled
+		Tooltip: ""
+	}
+
+	AutoJumpTooltipEnabled: {
+		Label: Auto Jump Tooltip Enabled
+		Tooltip: ""
+	}
+
+	HeightBoostTooltipEnabled: {
+		Label: Height Boost Tooltip Enabled
+		Tooltip: ""
+	}
+
+	FallDamageMultTooltipEnabled: {
+		Label: Fall Damage Mult Tooltip Enabled
+		Tooltip: ""
+	}
+
+	BoostedMinecartTooltipEnabled: {
+		Label: Boosted Minecart Tooltip Enabled
+		Tooltip: ""
+	}
+}
+
+CustomAccessorySlotConfig: {
+	Tooltip: ""
+
+	Enabled: {
+		Label: Enabled
+		Tooltip: Whether the custom accessory slot is enabled
+	}
+
+	Whitelist: {
+		Label: Whitelist
+		Tooltip: Additional items allowed into the accessory slot
+	}
+
+	Blacklist: {
+		Label: Blacklist
+		Tooltip: Items that are not allowed into the accessory slot
 	}
 }

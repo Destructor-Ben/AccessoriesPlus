@@ -1,4 +1,5 @@
-﻿using AccessoriesPlus.Content.Items;
+﻿using AccessoriesPlus.Config;
+using AccessoriesPlus.Content.Items;
 
 namespace AccessoriesPlus.Content.AccessorySlots;
 
@@ -8,6 +9,6 @@ public class AAAPostMLSlot : ModAccessorySlot
 {
     public override bool IsEnabled()
     {
-        return /* TODO: config ServerConfig.Instance.SlotMoonlord && */Main.hardMode && NPC.downedMoonlord && Player.GetModPlayer<MoonLordHeartPlayer>().HasExtraMoonLordAccessory;
+        return ServerConfig.Instance.SlotMoonLord && Main.expertMode && Player.GetModPlayer<MoonLordHeartPlayer>().HasExtraMoonLordAccessory;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AccessoriesPlus.Config.SubConfigs;
-using AccessoriesPlus.Utilities;
 
 namespace AccessoriesPlus.Content.InfoDisplays;
 
@@ -22,7 +21,7 @@ public class LifeformAnalyzerTweaks : GlobalInfoDisplay
         if (PDAConfig.Instance.LifeformAnalyzerDistanceInfo && (BestNPC?.active ?? false))
         {
             var npc = Main.npc[Main.LocalPlayer.accCritterGuideNumber];
-            displayValue = Mods.AccessoriesPlus.InfoDisplays.FoundRareCreature.GetTextValue(npc.GivenOrTypeName, (int)MathUtils.Round(npc.Distance(Main.LocalPlayer.Center) / 16f));
+            displayValue = "TODO"; // TODO: fix Mods.AccessoriesPlus.InfoDisplays.FoundRareCreature.GetTextValue(npc.GivenOrTypeName, (int)MathUtils.Round(npc.Distance(Main.LocalPlayer.Center) / 16f));
 
             displayColor = Main.MouseTextColorReal;
             displayShadowColor = Color.Black;

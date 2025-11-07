@@ -1,7 +1,9 @@
-﻿using Terraria.ModLoader.Config;
+﻿using AccessoriesPlus.Config.CustomConfigStuff;
+using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Config.SubConfigs;
 
+[SubConfig]
 public record WingStatsConfig
 {
     public static WingStatsConfig Instance => ClientConfig.Instance.WingStatsConfig;
@@ -19,7 +21,4 @@ public record WingStatsConfig
     public bool MaxHSpeedHoverMultTooltipEnabled = true;
     public bool HAccelerationMultHoverTooltipEnabled = true;
     public bool NegatesFallDamageTooltipEnabled = true;
-
-    // TODO: properly fix the ToString stuff
-    public override string? ToString() => null;
 }

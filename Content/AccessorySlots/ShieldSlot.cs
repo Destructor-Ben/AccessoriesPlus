@@ -2,18 +2,15 @@
 
 namespace AccessoriesPlus.Content.AccessorySlots;
 
-public class ShieldSlot : AbstractAccessorySlot
+public class ShieldSlot : SpecialAccessorySlot
 {
-    public override int FunctionalItemID => ItemID.CobaltShield;
-    public override int VanityItemID => ItemID.AnkhShield;
-
     public override bool IsValidItem(Item item)
     {
-        return item.shieldSlot > 0;
+        return ServerConfig.Instance.SlotShield.IsValidItem(item.shieldSlot > 0, item.type);
     }
 
     public override bool IsEnabled()
     {
-        return ServerConfig.Instance.SlotShield;
+        return ServerConfig.Instance.SlotShield.Enabled;
     }
 }

@@ -1,4 +1,5 @@
-﻿using AccessoriesPlus.Utilities;
+﻿using AccessoriesPlus.Config.SubConfigs;
+using AccessoriesPlus.Utilities;
 
 namespace AccessoriesPlus.Content.StatTooltips;
 
@@ -26,16 +27,11 @@ public class MountStats : Stats
         var stats = new MountStats();
         var vanillaStats = Mount.mounts[item.mountType];
 
-        if (true)
+        if (!MinecartStatsConfig.Instance.Enabled && vanillaStats.Minecart)
             return null;
 
-        /* TODO: fix config
-
-        if (!ClientConfig.Instance.StatsMinecarts && vanillaStats.Minecart)
+        if (!MountStatsConfig.Instance.Enabled && !vanillaStats.Minecart)
             return null;
-
-        if (!ClientConfig.Instance.StatsMounts && !vanillaStats.Minecart)
-            return null;*/
 
         // Flight time
         stats.FlightTime = vanillaStats.flightTimeMax;
@@ -70,10 +66,10 @@ public class MountStats : Stats
         // Minecart upgrade kit
         if (MountID.Sets.Cart[item.mountType] && Main.LocalPlayer.UsingSuperCart)
         {
-            stats.RunSpeed = Math.Max(Mount.SuperCartRunSpeed, Mount.SuperCartDashSpeed);
-            stats.Acceleration = Mount.SuperCartAcceleration;
-            stats.JumpHeight = Mount.SuperCartJumpHeight;
-            stats.JumpSpeed = Mount.SuperCartJumpSpeed;
+            stats.RunSpeed = Math.Max(vanillaStats.MinecartUpgradeRunSpeed, vanillaStats.MinecartUpgradeDashSpeed);
+            stats.Acceleration = vanillaStats.MinecartUpgradeAcceleration;
+            stats.JumpHeight = vanillaStats.MinecartUpgradeJumpHeight;
+            stats.JumpSpeed = vanillaStats.MinecartUpgradeJumpSpeed;
             stats.BoostedMinecart = true;
         }
 

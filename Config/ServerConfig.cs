@@ -1,37 +1,32 @@
 ﻿using System.ComponentModel;
+using AccessoriesPlus.Config.CustomConfigStuff;
+using AccessoriesPlus.Config.SubConfigs;
 using Terraria.ModLoader.Config;
-using PDAConfig = AccessoriesPlus.Config.SubConfigs.PDAConfig;
 
 namespace AccessoriesPlus.Config;
 
-public class ServerConfig : ModConfig
+public class ServerConfig : CustomModConfig
 {
     public static ServerConfig Instance => ModContent.GetInstance<ServerConfig>();
     public override ConfigScope Mode => ConfigScope.ServerSide;
 
     #region Improved Accessories
 
-    [Header("ImprovedAccessories")]
-    [DefaultValue(true)]
+    [Header("ImprovedAccessories"), ReloadRequired]
+    public bool ImprovedTerrasparkBoots = true;
     [ReloadRequired]
-    public bool ImprovedTerrasparkBoots;
-
-    [DefaultValue(true)]
-    [ReloadRequired]
-    public bool ImprovedAnkhShield;
-
-    [DefaultValue(true)]
-    [ReloadRequired]
+    public bool ImprovedAnkhShield = true;
+    [DefaultValue(true), ReloadRequired]
     public bool ImprovedHorseshoeBundle;
-
-    [DefaultValue(true)]
-    [ReloadRequired]
+    [DefaultValue(true), ReloadRequired]
     public bool ImprovedHandOfCreation;
-
-    [Expand(false)]
     public PDAConfig ImprovedPDA = new();
 
     #endregion
+
+    #region Old
+
+    /*
 
     #region Improved Grappling Hooks
 
@@ -59,28 +54,19 @@ public class ServerConfig : ModConfig
 
     #endregion
 
+    //*/
+
+    #endregion
+
     #region Accessory Slots
 
-    [DefaultValue(true), Header("AccessorySlots")]
-    public bool SlotMoonlord;
+    // TODO: go through each accessory (for all of the slots) and see if there are any items that set the item.__Slot variable and manually blacklist them here, but in a way that the user can override
 
-    [DefaultValue(true)]
-    public bool SlotWings;
-
-    [DefaultValue(true)]
-    public bool SlotShield;
-
-    [DefaultValue(true)]
-    public bool SlotBoots;
-
-    [DefaultValue(false)]
-    public bool SlotForceWings;
-
-    [DefaultValue(false)]
-    public bool SlotForceShields;
-
-    [DefaultValue(false)]
-    public bool SlotForceBoots;
+    [Header("AccessorySlots")]
+    public bool SlotMoonLord = true;
+    public CustomAccessorySlotConfig SlotWings = new();
+    public CustomAccessorySlotConfig SlotShield = new();
+    public CustomAccessorySlotConfig SlotBoots = new();
 
     #endregion
 

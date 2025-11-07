@@ -2,18 +2,15 @@
 
 namespace AccessoriesPlus.Content.AccessorySlots;
 
-public class BootSlot : AbstractAccessorySlot
+public class BootSlot : SpecialAccessorySlot
 {
-    public override int FunctionalItemID => ItemID.HermesBoots;
-    public override int VanityItemID => ItemID.TerrasparkBoots;
-
     public override bool IsValidItem(Item item)
     {
-        return item.shoeSlot > 0;
+        return ServerConfig.Instance.SlotBoots.IsValidItem(item.shoeSlot > 0, item.type);
     }
 
     public override bool IsEnabled()
     {
-        return ServerConfig.Instance.SlotBoots;
+        return ServerConfig.Instance.SlotBoots.Enabled;
     }
 }

@@ -95,3 +95,10 @@ Tooltips: {
 		BoostedMinecart: Has boosted stats
 	}
 }
+
+Items: {
+	MoonLordHeart: {
+		DisplayName: Moon Lord Heart
+		Tooltip: "{$ItemTooltip.DemonHeart}"
+	}
+}

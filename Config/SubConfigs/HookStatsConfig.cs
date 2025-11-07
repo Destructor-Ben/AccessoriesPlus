@@ -1,7 +1,9 @@
-﻿using Terraria.ModLoader.Config;
+﻿using AccessoriesPlus.Config.CustomConfigStuff;
+using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Config.SubConfigs;
 
+[SubConfig]
 public record HookStatsConfig
 {
     public static HookStatsConfig Instance => ClientConfig.Instance.HookStatsConfig;
@@ -17,6 +19,4 @@ public record HookStatsConfig
     public bool ShootSpeedTooltipEnabled = true;
     public bool RetreatSpeedTooltipEnabled = true;
     public bool PullSpeedTooltipEnabled = true;
-
-    public override string? ToString() => null;
 }

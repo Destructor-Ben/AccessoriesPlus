@@ -99,7 +99,7 @@ public class MetalDetectorTweaks : GlobalInfoDisplay
         {
             string tileName = GetTileName(Main.SceneMetrics.bestOre, Main.SceneMetrics.ClosestOrePosition);
             int distance = (int)MathUtils.Round(Main.SceneMetrics.ClosestOrePosition.Value.ToWorldCoordinates().Distance(Main.LocalPlayer.Center) / 16f);
-            displayValue = Mods.AccessoriesPlus.InfoDisplays.FoundTreasure.GetTextValue(tileName, distance);
+            displayValue = "TODO"; // TODO: fix Mods.AccessoriesPlus.InfoDisplays.FoundTreasure.GetTextValue(tileName, distance);
         }
     }
 

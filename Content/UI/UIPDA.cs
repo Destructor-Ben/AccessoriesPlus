@@ -325,7 +325,7 @@ public class UIPDA : Interface
             return;
 
         int distance = (int)MathUtils.Round(targetPos.Distance(Main.LocalPlayer.Center) / 16f);
-        string distanceText = Mods.AccessoriesPlus.InfoDisplays.TilesDistance.GetTextValue(distance);
+        string distanceText = "TODO"; // TODO: fix Mods.AccessoriesPlus.InfoDisplays.TilesDistance.GetTextValue(distance);
 
         UIUtils.ResetMouseText();
         UIUtils.MouseText(name + " - " + distanceText, true);

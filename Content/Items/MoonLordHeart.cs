@@ -1,37 +1,78 @@
 ﻿using Terraria.GameContent.ItemDropRules;
+using Terraria.ModLoader.IO;
 
 namespace AccessoriesPlus.Content.Items;
 
-// TODO: make the texture the moonlord heart, also just copy the Demon Heart
 public class MoonLordHeart : ModItem
 {
-    // TODO: automatically direct textures to assets folder, also make this a TerraUtil feature
-    public override string Texture => "AccessoriesPlus/Assets/Textures/Items/MoonLordHeart";
-
     public override void SetDefaults()
     {
         Item.CloneDefaults(ItemID.DemonHeart);
-        Item.master = true;
         Item.value = Item.sellPrice(0, 5);
     }
 
     public override bool CanUseItem(Player player)
     {
-        return Main.masterMode && !player.GetModPlayer<MoonLordHeartPlayer>().HasExtraMoonLordAccessory;
+        return Main.expertMode && !player.GetModPlayer<MoonLordHeartPlayer>().HasExtraMoonLordAccessory;
     }
 
     public override bool? UseItem(Player player)
     {
-        player.GetModPlayer<MoonLordHeartPlayer>().HasExtraMoonLordAccessory = true;
-        NetMessage.SendData(MessageID.SyncPlayer, number: player.whoAmI);
+        var modPlayer = player.GetModPlayer<MoonLordHeartPlayer>();
+        modPlayer.HasExtraMoonLordAccessory = true;
         return true;
     }
 }
 
 public class MoonLordHeartPlayer : ModPlayer
 {
-    // TODO: save, sync, etc -> reference EM
     public bool HasExtraMoonLordAccessory = false;
+
+    public override void SaveData(TagCompound tag)
+    {
+        tag[nameof(HasExtraMoonLordAccessory)] = HasExtraMoonLordAccessory;
+    }
+
+    public override void LoadData(TagCompound tag)
+    {
+        HasExtraMoonLordAccessory = tag.GetBool(nameof(HasExtraMoonLordAccessory));
+    }
+
+    // TODO: not needed if SendClientChanges not needed? or maybe clientClone is used for more than networking
+    public override void CopyClientState(ModPlayer targetCopy)
+    {
+        var clone = (MoonLordHeartPlayer)targetCopy;
+        clone.HasExtraMoonLordAccessory = HasExtraMoonLordAccessory;
+    }
+
+    // TODO: is this needed? item.UseItem should be run on all clients + the server
+    public override void SendClientChanges(ModPlayer clientPlayer)
+    {
+        var clone = (MoonLordHeartPlayer)clientPlayer;
+        if (clone.HasExtraMoonLordAccessory == HasExtraMoonLordAccessory)
+            return;
+
+        SyncPlayer(-1, Main.myPlayer, false);
+    }
+
+    public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+    {
+        var packet = NetHandler.GetPacket(PacketID.SyncMoonLordHeart);
+        packet.Write((byte)Player.whoAmI);
+        packet.Write(HasExtraMoonLordAccessory);
+        packet.Send(toWho, fromWho);
+    }
+
+    public static void ReceiveMessage(BinaryReader reader, int whoAmI)
+    {
+        byte targetPlayer = reader.ReadByte();
+        var modPlayer = Main.player[targetPlayer].GetModPlayer<MoonLordHeartPlayer>();
+        modPlayer.HasExtraMoonLordAccessory = reader.ReadBoolean();
+
+        // Forward to clients
+        if (Main.netMode == NetmodeID.Server)
+            modPlayer.SyncPlayer(-1, whoAmI, false);
+    }
 }
 
 public class MoonLordHeartLoot : GlobalItem
