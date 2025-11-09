@@ -144,7 +144,26 @@ public static class CustomConfigPatches
     private static void PatchConfigElementOnBind(ILCursor c)
     {
         // Make the "Reload Required" text addition work in nested elements
+        c.GotoNext(MoveType.Before, i => i.MatchStloc1());
+        c.Index -= 6;
 
+        // TODO: this works on all configs, including non custom ones, but oh well
+        /* TODO: finish fixing
+        var label = c.DefineLabel();
+        c.EmitBr(label);
+        c.Index += 9;
+        c.MarkLabel(label);
+
+        // Fix the MemberInfo.GetValue call
+        c.GotoNext(MoveType.Before, i => i.MatchRet());
+        c.Index -= 6;
+
+        // TODO: same issue as anove, works on non custom configs (including other mods)
+        c.EmitLdarg0();
+        c.EmitDelegate((ConfigElement self) =>
+        // TODO: how the fuck do we get the value from the load time config?
+        {
+        });*/
     }
 
     // TODO: test this properly

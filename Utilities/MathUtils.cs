@@ -16,4 +16,9 @@ public static class MathUtils
     {
         return MathF.Round(value / nearest) * nearest;
     }
+
+    public static decimal RoundDecimal(float value, float nearest = 1f)
+    {
+        return (decimal)Round(value, nearest);
+    }
 }

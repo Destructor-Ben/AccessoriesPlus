@@ -13,16 +13,10 @@ public record MinecartStatsConfig
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];
 
-    // TODO: remove unneccssary fields for minecarts
-    public bool FlightTimeTooltipEnabled = true;
-    public bool CanHoverTooltipEnabled = true;
     public bool RunSpeedTooltipEnabled = true;
-    public bool SwimSpeedTooltipEnabled = true;
     public bool AccelerationTooltipEnabled = true;
     public bool JumpSpeedTooltipEnabled = true;
     public bool JumpHeightTooltipEnabled = true;
-    public bool AutoJumpTooltipEnabled = true;
     public bool HeightBoostTooltipEnabled = true;
-    public bool FallDamageMultTooltipEnabled = true;
-    public bool BoostedMinecartTooltipEnabled = true;
+    public bool BoostedStatsTooltipEnabled = true;
 }

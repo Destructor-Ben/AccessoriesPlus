@@ -15,7 +15,7 @@ public static class ILUtils
             }
             catch (Exception e)
             {
-                throw new ILPatchFailureException(AccessoriesPlusMod.Instance, il, e);
+                throw new ILPatchFailureException(ModInstance, il, e);
             }
         };
     }
@@ -27,6 +27,6 @@ public static class ILUtils
 
     public static void DumpIL(this ILContext il)
     {
-        MonoModHooks.DumpIL(AccessoriesPlusMod.Instance, il);
+        MonoModHooks.DumpIL(ModInstance, il);
     }
 }

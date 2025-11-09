@@ -2,12 +2,21 @@
 
 namespace AccessoriesPlus.Content.StatTooltips;
 
-public class StatTooltips : GlobalItem
+public class StatTooltipsSystem : GlobalItem
 {
+    public static Stats? GetStats(Item item)
+    {
+        return (Stats?)WingStats.Get(item)
+            ?? (Stats?)HookStats.Get(item)
+            ?? (Stats?)LightPetStats.Get(item)
+            ?? (Stats?)MountStats.Get(item)
+            ?? null;
+    }
+
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
     {
-        var stats = Stats.GetStats(item);
-        if (stats == null)
+        var stats = GetStats(item);
+        if (stats is null)
             return;
 
         var statTooltips = new List<TooltipLine>();

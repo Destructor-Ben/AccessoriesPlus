@@ -1,1 +1,5 @@
-﻿<Project Sdk="Tomat.Terraria.ModLoader.Sdk/1.0.8" />
+﻿<Project Sdk="Tomat.Terraria.ModLoader.Sdk/1.0.8">
+  <ItemGroup>
+    <Using Static="true" Include="AccessoriesPlus.GlobalUsings" />
+  </ItemGroup>
+</Project>

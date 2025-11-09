@@ -80,7 +80,7 @@ public abstract class Interface : UIState, ILoadable, IModType
     #region Setup
 
     /// <inheritdoc cref="ModType.Mod" />
-    public Mod Mod => AccessoriesPlusMod.Instance;
+    public Mod Mod => ModInstance;
 
     /// <inheritdoc cref="ModType.Name" />
     public virtual string Name => GetType().Name;

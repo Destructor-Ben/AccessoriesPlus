@@ -16,6 +16,7 @@ public record PDAConfig
     public bool MetalDetectorDistanceInfo = true;
     public bool MetalDetectorArrows = true;
     public bool MetalDetectorHighlight = true;
+    // TODO: use OnConfigChanged and remove ReloadRequired
     [ReloadRequired]
     public bool TrackGems = true;
     [ReloadRequired]

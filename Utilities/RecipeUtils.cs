@@ -13,7 +13,7 @@ public static class RecipeUtils
     {
         foreach (var recipe in Main.recipe)
         {
-            if (recipe.Mod != AccessoriesPlusMod.Instance && recipe.createItem.type == type)
+            if (recipe.Mod != ModInstance && recipe.createItem.type == type)
                 recipe.DisableRecipe();
         }
     }

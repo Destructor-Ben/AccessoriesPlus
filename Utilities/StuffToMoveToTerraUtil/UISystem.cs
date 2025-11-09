@@ -27,7 +27,7 @@ public class UISystem : TerraUtilLoader<Interface>
             layers.Insert(
                 index,
                 new LegacyGameInterfaceLayer(
-                    AccessoriesPlusMod.Instance.Name + ": " + ui.Name,
+                    ModInstance.Name + ": " + ui.Name,
                     delegate
                     {
                         if (!ui.Visible)

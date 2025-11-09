@@ -195,7 +195,7 @@ public class HookStats : Stats
 
     private HookStats() { }
 
-    public static HookStats Get(Item item)
+    public static HookStats? Get(Item item)
     {
         if (!ClientConfig.Instance.HookStatsConfig.Enabled || item.shoot <= ProjectileID.None || !Main.projHook[item.shoot])
             return null;

@@ -51,7 +51,7 @@ public class LightPetStats : Stats
 
     private LightPetStats() { }
 
-    public static LightPetStats Get(Item item)
+    public static LightPetStats? Get(Item item)
     {
         return !ClientConfig.Instance.LightPetStatsConfig.Enabled || item.shoot <= ProjectileID.None || !ProjectileID.Sets.LightPet[item.shoot]
             ? null

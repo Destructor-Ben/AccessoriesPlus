@@ -11,7 +11,7 @@ public static class TooltipUtils
     /// TODO: move to accessories+
     public static int FindIndexOfTooltipName(this List<TooltipLine> tooltips, string tooltipName)
     {
-        return tooltips.IndexOf(tooltips.Where(t => t.Name == tooltipName).FirstOrDefault());
+        return tooltips.IndexOf(tooltips.FirstOrDefault(t => t.Name == tooltipName)!);
     }
 
     /// <summary>
@@ -53,6 +53,6 @@ public static class TooltipUtils
     /// TODO: move to accessories+
     public static TooltipLine GetTooltipLine(string name, params object[] stringFormat)
     {
-        return new TooltipLine(AccessoriesPlusMod.Instance, AccessoriesPlusMod.Instance.Name + ":" + name, AccessoriesPlusMod.Instance.GetLocalization("Tooltips." + name).Format(stringFormat));
+        return new TooltipLine(ModInstance, ModInstance.Name + ":" + name, ModInstance.GetLocalization("Tooltips." + name).Format(stringFormat));
     }
 }

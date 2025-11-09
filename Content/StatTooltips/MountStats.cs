@@ -19,7 +19,7 @@ public class MountStats : Stats
 
     private MountStats() { }
 
-    public static MountStats Get(Item item)
+    public static MountStats? Get(Item item)
     {
         if (item.mountType <= MountID.None)
             return null;

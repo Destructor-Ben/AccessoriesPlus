@@ -1,4 +1,4 @@
-﻿using AccessoriesPlus.Config;
+﻿using AccessoriesPlus.Config.SubConfigs;
 using AccessoriesPlus.Utilities;
 
 namespace AccessoriesPlus.Content.StatTooltips;
@@ -12,8 +12,6 @@ public class WingStats : Stats
     public bool CanHover { get; private set; } = false;
     public float MaxHSpeedHover { get; private set; } = -1f;
     public float HAccelerationMultHover { get; private set; } = 1f;
-
-    // TODO: add vertical wing stats
 
     // TODO: make this wing IDs instead of item IDs
     public static Dictionary<int, float> VanillaFlightHeight = new()
@@ -68,60 +66,50 @@ public class WingStats : Stats
 
     private WingStats() { }
 
-    public static WingStats Get(Item item)
+    public static WingStats? Get(Item item)
     {
-        if (!ClientConfig.Instance.WingStatsConfig.Enabled || item.wingSlot <= 0)
+        if (item.wingSlot <= 0)
             return null;
 
         var stats = new WingStats();
         var vanillaStats = Main.LocalPlayer.GetWingStats(item.wingSlot);
 
-        // Flight time
         stats.FlightTime = vanillaStats.FlyTime;
-
-        // Flight height
         // TODO: calculate flight height
         stats.FlightHeight = VanillaFlightHeight.GetValueOrDefault(item.type, -1f);
-
-        // Max horizontal speed
         stats.MaxHSpeed = vanillaStats.AccRunSpeedOverride;
-
-        // Horizontal acceleration
         stats.HAccelerationMult = vanillaStats.AccRunAccelerationMult;
-
-        // Can hover
         stats.CanHover = vanillaStats.HasDownHoverStats;
-
-        // Max horizontal speed (hovering)
         stats.MaxHSpeedHover = vanillaStats.DownHoverSpeedOverride;
-
-        // Horizontal acceleration (hovering)
         stats.HAccelerationMultHover = vanillaStats.DownHoverAccelerationMult;
-
-        // Modded hooks
-        // TODO: WingMovement (vertical) and WingAirLogicTweaks (horizontal)
-        // ItemLoader.HorizontalWingSpeeds
-        // ItemLoader.VerticalWingSpeeds
 
         return stats;
     }
 
     public override void Apply(List<TooltipLine> tooltips)
     {
+        if (WingStatsConfig.Instance.Enabled)
+            return;
+
         // Flight
-        tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.FlightTime", (decimal)MathUtils.Round(FlightTime / 60f, 0.1f)));
-        if (FlightHeight != -1f)
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.FlightHeight", (decimal)MathUtils.Round(FlightHeight / 16f, 0.1f)));
-        else
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.FlightHeightUnknown"));
+        if (WingStatsConfig.Instance.FlightTimeTooltipEnabled)
+            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.FlightTime", (decimal)MathUtils.Round(FlightTime / 60f, 0.1f)));
+
+        if (WingStatsConfig.Instance.FlightHeightTooltipEnabled)
+        {
+            tooltips.Add(
+                FlightHeight != -1f
+                    ? TooltipUtils.GetTooltipLine("WingStats.FlightHeight", (decimal)MathUtils.Round(FlightHeight / 16f, 0.1f))
+                    : TooltipUtils.GetTooltipLine("WingStats.FlightHeightUnknown")
+            );
+        }
 
         // Horizontal motion
-        if (MaxHSpeed != -1f)
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.MaxHSpeed", (decimal)MathUtils.Round(MaxHSpeed * MathUtils.PPTToMPH, 0.1f)));
-        else
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedUnknown"));
+        if (WingStatsConfig.Instance.MaxHSpeedTooltipEnabled)
+            tooltips.Add(MaxHSpeed != -1f ? TooltipUtils.GetTooltipLine("WingStats.MaxHSpeed", (decimal)MathUtils.Round(MaxHSpeed * MathUtils.PPTToMPH, 0.1f)) : TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedUnknown"));
 
-        tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.HAccelerationMult", HAccelerationMult));
+        if (WingStatsConfig.Instance.HAccelerationMultTooltipEnabled)
+            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.HAccelerationMult", HAccelerationMult));
 
         // Hovering
         if (CanHover)
@@ -136,6 +124,7 @@ public class WingStats : Stats
         }
 
         // Negates fall damage
-        tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.NegatesFallDamage"));
+        if (WingStatsConfig.Instance.NegatesFallDamageTooltipEnabled)
+            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.NegatesFallDamage"));
     }
 }

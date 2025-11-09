@@ -13,7 +13,7 @@ public static class NetHandler
 {
     public static ModPacket GetPacket(PacketID id)
     {
-        var packet = AccessoriesPlusMod.Instance.GetPacket();
+        var packet = ModInstance.GetPacket();
         packet.Write((byte)id);
         return packet;
     }
