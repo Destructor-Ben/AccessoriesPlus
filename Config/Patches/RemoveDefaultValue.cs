@@ -5,15 +5,15 @@ using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Config.Patches;
 
-// TODO: move to TerraUtil
+// TODO: move to TerraUtil?
 // Remove the need for [DefaultValue] in configs
 public static class RemoveDefaultValue
 {
-    // TODO: unloading?
+    private static MethodInfo Method => typeof(ReferenceDefaultsPreservingResolver).GetMethod("CreateProperties", BindingFlags.NonPublic | BindingFlags.Instance)!;
+
     public static void Load()
     {
-        var method = typeof(ReferenceDefaultsPreservingResolver).GetMethod("CreateProperties", BindingFlags.NonPublic | BindingFlags.Instance);
-        MonoModHooks.Add(method, OnCreateProperties);
+        MonoModHooks.Add(Method, OnCreateProperties);
     }
 
     // ReSharper disable once InconsistentNaming
