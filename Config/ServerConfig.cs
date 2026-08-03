@@ -1,10 +1,9 @@
-﻿using AccessoriesPlus.Config.CustomConfigStuff;
-using AccessoriesPlus.Config.SubConfigs;
+﻿using AccessoriesPlus.Config.SubConfigs;
 using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Config;
 
-public class ServerConfig : CustomModConfig
+public class ServerConfig : CustomConfig
 {
     public static ServerConfig Instance => ModContent.GetInstance<ServerConfig>();
     public override ConfigScope Mode => ConfigScope.ServerSide;

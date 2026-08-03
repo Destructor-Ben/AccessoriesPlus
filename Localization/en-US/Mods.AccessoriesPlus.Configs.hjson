@@ -519,6 +519,11 @@ MinecartStatsConfig: {
 		Label: Boosted Minecart Tooltip Enabled
 		Tooltip: ""
 	}
+
+	BoostedStatsTooltipEnabled: {
+		Label: Boosted Stats Tooltip Enabled
+		Tooltip: ""
+	}
 }
 
 MountStatsConfig: {

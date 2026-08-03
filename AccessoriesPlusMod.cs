@@ -1,4 +1,4 @@
-﻿using AccessoriesPlus.Config.CustomConfigStuff;
+﻿using AccessoriesPlus.Config.Patches;
 using AccessoriesPlus.Utilities.StuffToMoveToTerraUtil;
 using log4net;
 using ReLogic.Content.Sources;
@@ -16,12 +16,7 @@ public class AccessoriesPlusMod : Mod
 {
     public AccessoriesPlusMod()
     {
-        CustomConfigPatches.Load();
-    }
-
-    public override void Unload()
-    {
-        CustomConfigPatches.Unload();
+        RemoveDefaultValue.Load();
     }
 
     public override void HandlePacket(BinaryReader reader, int whoAmI)

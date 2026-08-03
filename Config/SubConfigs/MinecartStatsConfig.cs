@@ -1,9 +1,9 @@
-﻿using AccessoriesPlus.Config.CustomConfigStuff;
+﻿using AccessoriesPlus.Config.Elements;
 using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Config.SubConfigs;
 
-[SubConfig]
+[CustomModConfigItem(typeof(CustomObjectElement))]
 public record MinecartStatsConfig
 {
     public static MinecartStatsConfig Instance => ClientConfig.Instance.MinecartStatsConfig;

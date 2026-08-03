@@ -1,11 +1,11 @@
-﻿using AccessoriesPlus.Config.CustomConfigStuff;
+﻿using AccessoriesPlus.Config.Elements;
 using Terraria.ModLoader.Config;
 
 // ReSharper disable CollectionNeverUpdated.Global
 
 namespace AccessoriesPlus.Config.SubConfigs;
 
-[SubConfig]
+[CustomModConfigItem(typeof(CustomObjectElement))]
 public record CustomAccessorySlotConfig
 {
     public bool Enabled = true;
