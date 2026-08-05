@@ -1,124 +1,6 @@
-ServerConfig: {
-	DisplayName: Server Config
-
-	Headers: {
-		ImprovedAccessories: Improved Accessories
-		ImprovedMounts: Improved Mounts
-		ImprovedMinecarts: Improved Minecarts
-		ImprovedPets: Improved Pets
-		ImprovedGrapplingHooks: Improved Grappling Hooks
-		AccessorySlots: Accessory Slots
-		StatTooltips: Stat Tooltips
-		Obtainability: Obtainability
-	}
-
-	// Improved Accessories
-	ImprovedTerrasparkBoots: {
-		Label: "[i:TerrasparkBoots] Improved Terraspark Boots"
-		Tooltip: Makes the Terraspark Boots include the [i:AmphibianBoots] Amphibian Boots
-	}
-
-	ImprovedAnkhShield: {
-		Label: "[i:AnkhShield] Improved Ankh Shield"
-		Tooltip:
-			'''
-			Makes the Ankh Shield include the [i:HeroShield] Hero Shield and [i:FrozenShield] Frozen Shield
-			Makes the Ankh Charm include the [i:HandWarmer] Hand Warmer
-			Increases the defense of the Ankh Shield to 12
-			'''
-	}
-
-	ImprovedHorseshoeBundle: {
-		Label: "[i:HorseshoeBundle] Improved Bundle of Horseshoe Balloons"
-		Tooltip: Makes the Bundle of Balloons include the [i:SharkronBalloon] Sharkron Balloon and [i:FartInABalloon] Fart in a Balloon
-	}
-
-	ImprovedHandOfCreation: {
-		Label: "[i:HandOfCreation] Improved Hand of Creation"
-		Tooltip: Makes the Hand of Creation include the [i:Toolbox] Toolbox and [i:Toolbelt] Toolbelt
-	}
-
-	ImprovedPDA: {
-		Label: "[i:PDA] Improved PDA"
-		Tooltip: ""
-	}
-
-	// Accessory Slots
-	SlotMoonLord: {
-		Label: "[i:BossMaskMoonlord] Post Moon Lord Accessory Slot"
-		Tooltip: Enables an extra accessory slot after the Moon Lord is defeated
-	}
-
-	SlotWings: {
-		Label: "[i:WingsSolar] Wing Slot"
-		Tooltip:
-			'''
-			Options for a wings-only accessory slot
-			Automatically whitelists items that are wings
-			'''
-	}
-
-	SlotShield: {
-		Label: "[i:AnkhShield] Shield Slot"
-		Tooltip:
-			'''
-			Options for a shields-only accessory slot
-			Automatically whitelists items that are shields
-			'''
-	}
-
-	SlotBoots: {
-		Label: "[i:TerrasparkBoots] Boot Slot"
-		Tooltip:
-			'''
-			Options for a boots-only accessory slot
-			Automatically whitelists items that are boots
-			'''
-	}
-
-	// Obtainability
-	ObtainabilityRecipes: {
-		Label: "[i:HermesBoots] More Accessory Recipes"
-		Tooltip:
-			'''
-			Adds various recipes for accessories
-			Use the Recipe Browser Mod to find them since I'm lazy
-			'''
-	}
-
-	ObtainabilityShimmer: {
-		Label: "[i:BottomlessShimmerBucket] Accessory Shimmering"
-		Tooltip:
-			'''
-			Allows the following accessories to be shimmered into each other
-			[i:BrickLayer] Brick Layer, [i:ExtendoGrip] Extendo Grip, [i:PaintSprayer] Paint Sprayer, and [i:PortableCementMixer] Portable Cement Mixer
-			[i:Stopwatch] Stopwatch, [i:LifeformAnalyzer] Lifeform Analyzer, and [i:DPSMeter] DPS Meter
-			[i:ShinyRedBalloon] Shiny Red Balloon and [i:BalloonPufferfish] Balloon Pufferfish
-			[i:PutridScent] Putrid Scent and [i:FleshKnuckles] Flesh Knuckles
-			[i:BandofStarpower] Band of Starpower and [i:PanicNecklace] Panic Necklace
-			[i:WormScarf] Worm Scarf and [i:BrainOfConfusion] Brain of Confusion
-			'''
-	}
-
-	ObtainabilityNPCDrops: {
-		Label: "[i:ArmorPolish] Better Ankh Charm Drops"
-		Tooltip: Multiplies the base drop rate of all [i:AnkhCharm] Ankh Charm accessories by 3
-	}
-
-	ObtainabilityTravellingMerchant: {
-		Label: "[i:PeddlersHat] Common Travelling Merchant Accessories"
-		Tooltip: Guarantees that the Travelling Merchant will have an extra slot dedicated to an accessory
-	}
-
-	ObtainabilityPresents: {
-		Label: "[i:Present] Remove Accessories From Presents"
-		Tooltip:
-			'''
-			Removes the [i:HandWarmer] Hand Warmer and [i:Toolbox] Toolbox from presents
-			Adds a recipe for the Hand Warmer
-			Makes the Mechanic sell the Toolbox
-			'''
-	}
+Common: {
+	TooltipWhitelist: A list of items to include for receiving these stat tooltips in addition to the automatically detected items
+	TooltipBlacklist: A list of items to exclude from receiving these stat tooltips, regardless of whether they are whitelisted or not
 }
 
 ClientConfig: {
@@ -151,90 +33,6 @@ ClientConfig: {
 	}
 }
 
-PDAConfig: {
-	Tooltip: ""
-
-	Headers: {
-		MetalDetector: "[i:MetalDetector] Metal Detector"
-		Radar: "[i:Radar] Radar"
-		LifeformAnalyzer: "[i:LifeformAnalyzer] Lifeform Analyzer"
-	}
-
-	// Radar
-	RadarHighlightEnemies: {
-		Label: Highlight Enemies
-		Tooltip: Makes the [i:Radar] Radar highlight enemies like the [i:HunterPotion] Hunter Potion
-	}
-
-	RadarHighlightDanger: {
-		Label: Highlight Dangerous Tiles
-		Tooltip: Makes the [i:Radar] Radar highlight dangerous tiles like the [i:TrapsightPotion] Dangersense Potion
-	}
-
-	// Metal detector
-	MetalDetectorDistanceInfo: {
-		Label: Distance Information
-		Tooltip: Makes the [i:MetalDetector] Metal Detector display distance information
-	}
-
-	MetalDetectorArrows: {
-		Label: Treasure Arrows
-		Tooltip: Makes the [i:MetalDetector] Metal Detector display arrows pointing to nearby treasure
-	}
-
-	MetalDetectorHighlight: {
-		Label: Highlight Treasure
-		Tooltip: Makes the [i:MetalDetector] Metal Detector highlight treasure
-	}
-
-	TrackGems: {
-		Label: Track Gems
-		Tooltip: Allows the [i:MetalDetector] Metal Detector to track gems
-	}
-
-	TrackHellstone: {
-		Label: Track Hellstone
-		Tooltip: Allows the [i:MetalDetector] Metal Detector to track Hellstone
-	}
-
-	// Lifeform analyzer
-	LifeformAnalyzerDistanceInfo: {
-		Label: Distance Information
-		Tooltip: Makes the [i:LifeformAnalyzer] Lifeform Analyzer display distance information
-	}
-
-	LifeformAnalyzerArrows: {
-		Label: Rare Creature Arrows
-		Tooltip: Makes the [i:LifeformAnalyzer] Lifeform Analyzer display arrows pointing to nearby rare creatures
-	}
-
-	LifeformAnalyzerHighlight: {
-		Label: Highlight Rare Creatures
-		Tooltip: Makes the [i:LifeformAnalyzer] Lifeform Analyzer highlight rare creatures
-	}
-
-	UseNPCWhitelist: {
-		Label: Use NPC Whitelist
-		Tooltip: Whether the [i:LifeformAnalyzer] Lifeform Analyzers NPC whitelist should be enabled
-	}
-
-	UseNPCBlacklist: {
-		Label: Use NPC Blacklist
-		Tooltip: Whether the [i:LifeformAnalyzer] Lifeform Analyzers NPC blacklist should be enabled
-	}
-
-	NPCWhitelist: {
-		Label: NPC Whitelist
-		Tooltip: Allows the [i:LifeformAnalyzer] Lifeform Analyzer to track additional creatures
-	}
-
-	NPCBlacklist: {
-		Label: NPC Blacklist
-		Tooltip: Allows the [i:LifeformAnalyzer] Lifeform Analyzer to prevent tracking of certain creatures
-	}
-}
-
-// TODO: regenerate all of the below
 WingStatsConfig: {
 	Tooltip: ""
 
@@ -243,13 +41,13 @@ WingStatsConfig: {
 		Tooltip: ""
 	}
 
-	WingTooltipWhitelist: {
-		Label: Wing Tooltip Whitelist
+	Whitelist: {
+		Label: Whitelist
 		Tooltip: ""
 	}
 
-	WingTooltipBlacklist: {
-		Label: Wing Tooltip Blacklist
+	Blacklist: {
+		Label: Blacklist
 		Tooltip: ""
 	}
 
@@ -290,16 +88,6 @@ WingStatsConfig: {
 
 	NegatesFallDamageTooltipEnabled: {
 		Label: Negates Fall Damage Tooltip Enabled
-		Tooltip: ""
-	}
-
-	Whitelist: {
-		Label: Whitelist
-		Tooltip: ""
-	}
-
-	Blacklist: {
-		Label: Blacklist
 		Tooltip: ""
 	}
 }
@@ -358,37 +146,37 @@ LightPetStatsConfig: {
 
 	Enabled: {
 		Label: Enabled
-		Tooltip: ""
+		Tooltip: Whether to enable stat tooltips for light pets
 	}
 
 	Whitelist: {
-		Label: Whitelist
-		Tooltip: ""
+		Label: Item Whitelist
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.TooltipWhitelist}"
 	}
 
 	Blacklist: {
-		Label: Blacklist
-		Tooltip: ""
+		Label: Item Blacklist
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.TooltipBlacklist}"
 	}
 
 	BrightnessTooltipEnabled: {
-		Label: Brightness Tooltip Enabled
-		Tooltip: ""
+		Label: Brightness Tooltip
+		Tooltip: Whether to enable the brightness tooltip
 	}
 
 	ControllableTooltipEnabled: {
-		Label: Controllable Tooltip Enabled
-		Tooltip: ""
+		Label: Controllable Tooltip
+		Tooltip: Whether to enable the '{$Mods.AccessoriesPlus.Tooltips.LightPetStats.Controllable}' tooltip
 	}
 
 	ExposesTreasureTooltipEnabled: {
-		Label: Exposes Treasure Tooltip Enabled
-		Tooltip: ""
+		Label: Reveals Treasure Tooltip
+		Tooltip: Whether to enable the '{$Mods.AccessoriesPlus.Tooltips.LightPetStats.ExposesTreasure}' tooltip
 	}
 
 	ExposesEnemiesTooltipEnabled: {
-		Label: Exposes Enemies Tooltip Enabled
-		Tooltip: ""
+		Label: Reveals Enemies Tooltip
+		Tooltip: Whether to enable the '{$Mods.AccessoriesPlus.Tooltips.LightPetStats.ExposesEnemies}' tooltip
 	}
 }
 
@@ -410,78 +198,8 @@ MinecartStatsConfig: {
 		Tooltip: ""
 	}
 
-	FlightTime: {
-		Label: Flight Time
-		Tooltip: ""
-	}
-
-	CanHover: {
-		Label: Can Hover
-		Tooltip: ""
-	}
-
-	RunSpeed: {
-		Label: Run Speed
-		Tooltip: ""
-	}
-
-	SwimSpeed: {
-		Label: Swim Speed
-		Tooltip: ""
-	}
-
-	Acceleration: {
-		Label: Acceleration
-		Tooltip: ""
-	}
-
-	JumpSpeed: {
-		Label: Jump Speed
-		Tooltip: ""
-	}
-
-	JumpHeight: {
-		Label: Jump Height
-		Tooltip: ""
-	}
-
-	AutoJump: {
-		Label: Auto Jump
-		Tooltip: ""
-	}
-
-	HeightBoost: {
-		Label: Height Boost
-		Tooltip: ""
-	}
-
-	FallDamageMult: {
-		Label: Fall Damage Mult
-		Tooltip: ""
-	}
-
-	BoostedMinecart: {
-		Label: Boosted Minecart
-		Tooltip: ""
-	}
-
-	FlightTimeTooltipEnabled: {
-		Label: Flight Time Tooltip Enabled
-		Tooltip: ""
-	}
-
-	CanHoverTooltipEnabled: {
-		Label: Can Hover Tooltip Enabled
-		Tooltip: ""
-	}
-
 	RunSpeedTooltipEnabled: {
 		Label: Run Speed Tooltip Enabled
-		Tooltip: ""
-	}
-
-	SwimSpeedTooltipEnabled: {
-		Label: Swim Speed Tooltip Enabled
 		Tooltip: ""
 	}
 
@@ -500,23 +218,8 @@ MinecartStatsConfig: {
 		Tooltip: ""
 	}
 
-	AutoJumpTooltipEnabled: {
-		Label: Auto Jump Tooltip Enabled
-		Tooltip: ""
-	}
-
 	HeightBoostTooltipEnabled: {
 		Label: Height Boost Tooltip Enabled
-		Tooltip: ""
-	}
-
-	FallDamageMultTooltipEnabled: {
-		Label: Fall Damage Mult Tooltip Enabled
-		Tooltip: ""
-	}
-
-	BoostedMinecartTooltipEnabled: {
-		Label: Boosted Minecart Tooltip Enabled
 		Tooltip: ""
 	}
 
@@ -544,61 +247,6 @@ MountStatsConfig: {
 		Tooltip: ""
 	}
 
-	FlightTime: {
-		Label: Flight Time
-		Tooltip: ""
-	}
-
-	CanHover: {
-		Label: Can Hover
-		Tooltip: ""
-	}
-
-	RunSpeed: {
-		Label: Run Speed
-		Tooltip: ""
-	}
-
-	SwimSpeed: {
-		Label: Swim Speed
-		Tooltip: ""
-	}
-
-	Acceleration: {
-		Label: Acceleration
-		Tooltip: ""
-	}
-
-	JumpSpeed: {
-		Label: Jump Speed
-		Tooltip: ""
-	}
-
-	JumpHeight: {
-		Label: Jump Height
-		Tooltip: ""
-	}
-
-	AutoJump: {
-		Label: Auto Jump
-		Tooltip: ""
-	}
-
-	HeightBoost: {
-		Label: Height Boost
-		Tooltip: ""
-	}
-
-	FallDamageMult: {
-		Label: Fall Damage Mult
-		Tooltip: ""
-	}
-
-	BoostedMinecart: {
-		Label: Boosted Minecart
-		Tooltip: ""
-	}
-
 	FlightTimeTooltipEnabled: {
 		Label: Flight Time Tooltip Enabled
 		Tooltip: ""
@@ -655,21 +303,181 @@ MountStatsConfig: {
 	}
 }
 
+ServerConfig: {
+	DisplayName: Server Config
+
+	Headers: {
+		ImprovedAccessories: Improved Accessories Header
+		AccessorySlots: Accessory Slots Header
+		Obtainability: Obtainability Header
+	}
+
+	ImprovedTerrasparkBoots: {
+		Label: Improved Terraspark Boots
+		Tooltip: ""
+	}
+
+	ImprovedAnkhShield: {
+		Label: Improved Ankh Shield
+		Tooltip: ""
+	}
+
+	ImprovedHorseshoeBundle: {
+		Label: Improved Horseshoe Bundle
+		Tooltip: ""
+	}
+
+	ImprovedHandOfCreation: {
+		Label: Improved Hand Of Creation
+		Tooltip: ""
+	}
+
+	ImprovedPDA: {
+		Label: Improved P D A
+		Tooltip: ""
+	}
+
+	SlotMoonLord: {
+		Label: Slot Moon Lord
+		Tooltip: ""
+	}
+
+	SlotWings: {
+		Label: Slot Wings
+		Tooltip: ""
+	}
+
+	SlotShield: {
+		Label: Slot Shield
+		Tooltip: ""
+	}
+
+	SlotBoots: {
+		Label: Slot Boots
+		Tooltip: ""
+	}
+
+	ObtainabilityRecipes: {
+		Label: Obtainability Recipes
+		Tooltip: ""
+	}
+
+	ObtainabilityShimmer: {
+		Label: Obtainability Shimmer
+		Tooltip: ""
+	}
+
+	ObtainabilityNPCDrops: {
+		Label: Obtainability N P C Drops
+		Tooltip: ""
+	}
+
+	ObtainabilityTravellingMerchant: {
+		Label: Obtainability Travelling Merchant
+		Tooltip: ""
+	}
+
+	ObtainabilityPresents: {
+		Label: Obtainability Presents
+		Tooltip: ""
+	}
+}
+
+PDAConfig: {
+	Tooltip: ""
+
+	Headers: {
+		Radar: Radar Header
+		MetalDetector: Metal Detector Header
+		LifeformAnalyzer: Lifeform Analyzer Header
+	}
+
+	RadarHighlightEnemies: {
+		Label: Radar Highlight Enemies
+		Tooltip: ""
+	}
+
+	RadarHighlightDanger: {
+		Label: Radar Highlight Danger
+		Tooltip: ""
+	}
+
+	MetalDetectorDistanceInfo: {
+		Label: Metal Detector Distance Info
+		Tooltip: ""
+	}
+
+	MetalDetectorArrows: {
+		Label: Metal Detector Arrows
+		Tooltip: ""
+	}
+
+	MetalDetectorHighlight: {
+		Label: Metal Detector Highlight
+		Tooltip: ""
+	}
+
+	TrackGems: {
+		Label: Track Gems
+		Tooltip: ""
+	}
+
+	TrackHellstone: {
+		Label: Track Hellstone
+		Tooltip: ""
+	}
+
+	LifeformAnalyzerDistanceInfo: {
+		Label: Lifeform Analyzer Distance Info
+		Tooltip: ""
+	}
+
+	LifeformAnalyzerArrows: {
+		Label: Lifeform Analyzer Arrows
+		Tooltip: ""
+	}
+
+	LifeformAnalyzerHighlight: {
+		Label: Lifeform Analyzer Highlight
+		Tooltip: ""
+	}
+
+	UseNPCWhitelist: {
+		Label: Use N P C Whitelist
+		Tooltip: ""
+	}
+
+	UseNPCBlacklist: {
+		Label: Use N P C Blacklist
+		Tooltip: ""
+	}
+
+	NPCWhitelist: {
+		Label: N P C Whitelist
+		Tooltip: ""
+	}
+
+	NPCBlacklist: {
+		Label: N P C Blacklist
+		Tooltip: ""
+	}
+}
+
 CustomAccessorySlotConfig: {
 	Tooltip: ""
 
 	Enabled: {
 		Label: Enabled
-		Tooltip: Whether the custom accessory slot is enabled
+		Tooltip: ""
 	}
 
 	Whitelist: {
 		Label: Whitelist
-		Tooltip: Additional items allowed into the accessory slot
+		Tooltip: ""
 	}
 
 	Blacklist: {
 		Label: Blacklist
-		Tooltip: Items that are not allowed into the accessory slot
+		Tooltip: ""
 	}
 }
