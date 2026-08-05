@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader.Config;
+﻿using AccessoriesPlus.Utilities;
+using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Content.StatTooltips;
 
@@ -29,4 +30,9 @@ public abstract class TooltipStats
     protected abstract void SetStatsFromItem(Item item);
 
     public abstract IEnumerable<TooltipLine> GetTooltips();
+
+    public virtual void InsertTooltips(List<TooltipLine> tooltips, TooltipLine[] statTooltips)
+    {
+        tooltips.InsertTooltips(LineNameToInsertAround, After, statTooltips);
+    }
 }

@@ -9,6 +9,12 @@ public class WingStats : TooltipStats
 {
     private static WingStatsConfig Config => WingStatsConfig.Instance;
 
+    // TODO: proper null/unknown stat value handling
+    // TODO: get vertical wing speed stats
+    // TODO: access FlightHeight dictionary properly (rename it and make it instance based)
+    // TODO: test whitelist + blacklist
+    // TODO: test hybrid wing + boot items
+
     public float? FlightTime { get; private set; } = null;
     public float? FlightHeight { get; private set; } = null;
     public float? MaxHSpeed { get; private set; } = null;
@@ -20,56 +26,6 @@ public class WingStats : TooltipStats
     public override bool Enabled => Config.Enabled;
     public override List<ItemDefinition> Whitelist => Config.Whitelist;
     public override List<ItemDefinition> Blacklist => Config.Blacklist;
-
-    public static Dictionary<int, float?> VanillaFlightHeight = new()
-    {
-        { ArmorIDs.Wing.CreativeWings, 18 * 16f },
-        { ArmorIDs.Wing.AngelWings, 53 * 16f },
-        { ArmorIDs.Wing.DemonWings, 53 * 16f },
-        { ArmorIDs.Wing.FairyWings, 67 * 16f },
-        { ArmorIDs.Wing.FinWings, 67 * 16f },
-        { ArmorIDs.Wing.FrozenWings, 67 * 16f },
-        { ArmorIDs.Wing.HarpyWings, 67 * 16f },
-        { ArmorIDs.Wing.Jetpack, 77 * 16f },
-        { ArmorIDs.Wing.RedsWings, 77 * 16f },
-        { ArmorIDs.Wing.DTownsWings, 77 * 16f },
-        { ArmorIDs.Wing.WillsWings, 77 * 16f },
-        { ArmorIDs.Wing.CrownosWings, 77 * 16f },
-        { ArmorIDs.Wing.CenxsWings, 77 * 16f },
-        { ArmorIDs.Wing.LazuresBarrierPlatform, 77 * 16f },
-        { ArmorIDs.Wing.Yoraiz0rsSpell, 77 * 16f },
-        { ArmorIDs.Wing.JimsWings, 77 * 16f },
-        { ArmorIDs.Wing.SkiphssPaws, 77 * 16f },
-        { ArmorIDs.Wing.LokisWings, 77 * 16f },
-        { ArmorIDs.Wing.ArkhalisWings, 77 * 16f },
-        { ArmorIDs.Wing.LeinforsWings, 77 * 16f },
-        { ArmorIDs.Wing.GhostarsWings, 77 * 16f },
-        { ArmorIDs.Wing.SafemanWings, 77 * 16f },
-        { ArmorIDs.Wing.FoodBarbarianWings, 77 * 16f },
-        { ArmorIDs.Wing.GroxTheGreatWings, 77 * 16f },
-        { ArmorIDs.Wing.LeafWings, 81 * 16f },
-        { ArmorIDs.Wing.BatWings, 81 * 16f },
-        { ArmorIDs.Wing.BeeWings, 81 * 16f },
-        { ArmorIDs.Wing.ButterflyWings, 81 * 16f },
-        { ArmorIDs.Wing.FlameWings, 81 * 16f },
-        { ArmorIDs.Wing.Hoverboard, 94 * 16f },
-        { ArmorIDs.Wing.BoneWings, 94 * 16f },
-        { ArmorIDs.Wing.MothronWings, 94 * 16f },
-        { ArmorIDs.Wing.SpectreWings, 94 * 16f },
-        { ArmorIDs.Wing.BeetleWings, 94 * 16f },
-        { ArmorIDs.Wing.FestiveWings, 107 * 16f },
-        { ArmorIDs.Wing.SpookyWings, 107 * 16f },
-        { ArmorIDs.Wing.TatteredFairyWings, 107 * 16f },
-        { ArmorIDs.Wing.SteampunkWings, 107 * 16f },
-        { ArmorIDs.Wing.BetsyWings, 119 * 16f },
-        { ArmorIDs.Wing.RainbowWings, 128 * 16f },
-        { ArmorIDs.Wing.FishronWings, 143 * 16f },
-        { ArmorIDs.Wing.NebulaMantle, 143 * 16f },
-        { ArmorIDs.Wing.VortexBooster, 143 * 16f },
-        { ArmorIDs.Wing.SolarWings, 167 * 16f },
-        { ArmorIDs.Wing.StardustWings, 167 * 16f },
-        { ArmorIDs.Wing.LongTrailRainbowWings, 201 * 16f },
-    };
 
     public override bool ItemMeetsDefaultCondition(Item item)
     {
@@ -85,7 +41,7 @@ public class WingStats : TooltipStats
 
         FlightTime = vanillaStats.FlyTime;
         // TODO: calculate flight height after content is setup
-        FlightHeight = VanillaFlightHeight.GetValueOrDefault(item.wingSlot, null);
+        FlightHeight = WingStatsCalculator.VanillaFlightHeight.GetValueOrDefault(item.wingSlot, null);
         MaxHSpeed = vanillaStats.AccRunSpeedOverride;
         HAccelerationMult = vanillaStats.AccRunAccelerationMult;
         CanHover = vanillaStats.HasDownHoverStats;
@@ -117,18 +73,39 @@ public class WingStats : TooltipStats
         // Hovering
         if (CanHover)
         {
-            if (Config.CanHoverTooltipEnabled)
-                yield return TooltipUtils.GetTooltipLine("WingStats.CanHover");
-
             if (Config.MaxHSpeedHoverMultTooltipEnabled && MaxHSpeedHover is not null)
                 yield return TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedHover", MathUtils.Round(MaxHSpeedHover.Value * MathUtils.PPTToMPH, 0.1f));
 
             if (Config.HAccelerationMultHoverTooltipEnabled && HAccelerationMultHover is not null)
                 yield return TooltipUtils.GetTooltipLine("WingStats.HAccelerationMultHover", HAccelerationMultHover.Value);
         }
+    }
 
-        // Negates fall damage
+    public override void InsertTooltips(List<TooltipLine> tooltips, TooltipLine[] statTooltips)
+    {
+        // Handle info that is better off coming after the stats where there is an existing tooltip line
+        var otherTooltips = new List<TooltipLine>();
+
+        // Create the "Allows flight and slow fall" tooltip if it doesn't exist, and insert the other tooltips after
+        string? flightTooltipText = Language.GetTextValue("CommonItemTooltip.FlightAndSlowfall");
+        int flightTooltipIndex = tooltips.FindIndex(t => t.Text == flightTooltipText);
+        if (flightTooltipIndex == -1)
+        {
+            flightTooltipIndex = tooltips.FindIndexOfTooltipName("Equipable");
+            if (flightTooltipIndex == -1)
+                return;
+
+            otherTooltips.Add(TooltipUtils.GetTooltipLineWithText("FlightAndSlowFall", flightTooltipText));
+        }
+
         if (Config.NegatesFallDamageTooltipEnabled)
-            yield return TooltipUtils.GetTooltipLine("WingStats.NegatesFallDamage");
+            otherTooltips.Add(TooltipUtils.GetTooltipLine("WingStats.NegatesFallDamage"));
+
+        if (Config.CanHoverTooltipEnabled && CanHover)
+            otherTooltips.Add(TooltipUtils.GetTooltipLine("WingStats.CanHover"));
+
+        tooltips.InsertRange(flightTooltipIndex + 1, otherTooltips.ToArray());
+
+        base.InsertTooltips(tooltips, statTooltips);
     }
 }

@@ -1,6 +1,4 @@
-﻿using AccessoriesPlus.Utilities;
-
-namespace AccessoriesPlus.Content.StatTooltips;
+﻿namespace AccessoriesPlus.Content.StatTooltips;
 
 public class StatTooltipsSystem : GlobalItem
 {
@@ -18,7 +16,7 @@ public class StatTooltipsSystem : GlobalItem
         if (stats is null)
             return;
 
-        var statTooltips = stats.GetTooltips();
-        tooltips.InsertTooltips(stats.LineNameToInsertAround, stats.After, statTooltips.ToArray());
+        var statTooltips = stats.GetTooltips().ToArray();
+        stats.InsertTooltips(tooltips, statTooltips);
     }
 }
