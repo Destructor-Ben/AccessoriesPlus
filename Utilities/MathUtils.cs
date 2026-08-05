@@ -1,4 +1,6 @@
-﻿namespace AccessoriesPlus.Utilities;
+﻿using System.Globalization;
+
+namespace AccessoriesPlus.Utilities;
 
 public static class MathUtils
 {
@@ -17,8 +19,8 @@ public static class MathUtils
         return MathF.Round(value / nearest) * nearest;
     }
 
-    public static decimal RoundDecimal(float value, float nearest = 1f)
+    public static string ToNiceString(this float f)
     {
-        return (decimal)Round(value, nearest);
+        return f.ToString("", CultureInfo.InvariantCulture);
     }
 }

@@ -1,9 +1,10 @@
-﻿using AccessoriesPlus.Config.SubConfigs;
+﻿/*
+using AccessoriesPlus.Config.SubConfigs;
 using AccessoriesPlus.Utilities;
 
 namespace AccessoriesPlus.Content.StatTooltips;
 
-public class MountStats : Stats
+public class MountStats : TooltipStats
 {
     public int FlightTime { get; private set; } = 0;
     public bool CanHover { get; private set; } = false;
@@ -16,8 +17,6 @@ public class MountStats : Stats
     public int HeightBoost { get; private set; } = 0;
     public float FallDamageMult { get; private set; } = 0f;
     public bool BoostedMinecart { get; private set; } = false;
-
-    private MountStats() { }
 
     public static MountStats? Get(Item item)
     {
@@ -118,3 +117,4 @@ public class MountStats : Stats
             tooltips.Add(TooltipUtils.GetTooltipLine("MountStats.BoostedMinecart"));
     }
 }
+*/

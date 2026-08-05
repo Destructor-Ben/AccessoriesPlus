@@ -1,130 +1,134 @@
 ﻿using AccessoriesPlus.Config.SubConfigs;
 using AccessoriesPlus.Utilities;
+using Terraria.ModLoader.Config;
+using VanillaWingStats = Terraria.DataStructures.WingStats;
 
 namespace AccessoriesPlus.Content.StatTooltips;
 
-public class WingStats : Stats
+public class WingStats : TooltipStats
 {
-    public float FlightTime { get; private set; } = -1f;
-    public float FlightHeight { get; private set; } = -1f;
-    public float MaxHSpeed { get; private set; } = -1f;
-    public float HAccelerationMult { get; private set; } = 1f;
-    public bool CanHover { get; private set; } = false;
-    public float MaxHSpeedHover { get; private set; } = -1f;
-    public float HAccelerationMultHover { get; private set; } = 1f;
+    private static WingStatsConfig Config => WingStatsConfig.Instance;
 
-    // TODO: make this wing IDs instead of item IDs
-    public static Dictionary<int, float> VanillaFlightHeight = new()
+    public float? FlightTime { get; private set; } = null;
+    public float? FlightHeight { get; private set; } = null;
+    public float? MaxHSpeed { get; private set; } = null;
+    public float? HAccelerationMult { get; private set; } = null;
+    public bool CanHover { get; private set; } = false;
+    public float? MaxHSpeedHover { get; private set; } = null;
+    public float? HAccelerationMultHover { get; private set; } = null;
+
+    public override bool Enabled => Config.Enabled;
+    public override List<ItemDefinition> Whitelist => Config.Whitelist;
+    public override List<ItemDefinition> Blacklist => Config.Blacklist;
+
+    public static Dictionary<int, float?> VanillaFlightHeight = new()
     {
-        { ItemID.CreativeWings, 18 * 16f },
-        { ItemID.AngelWings, 53 * 16f },
-        { ItemID.DemonWings, 53 * 16f },
-        { ItemID.FairyWings, 67 * 16f },
-        { ItemID.FinWings, 67 * 16f },
-        { ItemID.FrozenWings, 67 * 16f },
-        { ItemID.HarpyWings, 67 * 16f },
-        { ItemID.Jetpack, 77 * 16f },
-        { ItemID.RedsWings, 77 * 16f },
-        { ItemID.DTownsWings, 77 * 16f },
-        { ItemID.WillsWings, 77 * 16f },
-        { ItemID.CrownosWings, 77 * 16f },
-        { ItemID.CenxsWings, 77 * 16f },
-        { ItemID.BejeweledValkyrieWing, 77 * 16f },
-        { ItemID.Yoraiz0rWings, 77 * 16f },
-        { ItemID.JimsWings, 77 * 16f },
-        { ItemID.SkiphsWings, 77 * 16f },
-        { ItemID.LokisWings, 77 * 16f },
-        { ItemID.ArkhalisWings, 77 * 16f },
-        { ItemID.LeinforsWings, 77 * 16f },
-        { ItemID.GhostarsWings, 77 * 16f },
-        { ItemID.SafemanWings, 77 * 16f },
-        { ItemID.FoodBarbarianWings, 77 * 16f },
-        { ItemID.GroxTheGreatWings, 77 * 16f },
-        { ItemID.LeafWings, 81 * 16f },
-        { ItemID.BatWings, 81 * 16f },
-        { ItemID.BeeWings, 81 * 16f },
-        { ItemID.ButterflyWings, 81 * 16f },
-        { ItemID.FlameWings, 81 * 16f },
-        { ItemID.Hoverboard, 94 * 16f },
-        { ItemID.BoneWings, 94 * 16f },
-        { ItemID.MothronWings, 94 * 16f },
-        { ItemID.GhostWings, 94 * 16f },
-        { ItemID.BeetleWings, 94 * 16f },
-        { ItemID.FestiveWings, 107 * 16f },
-        { ItemID.SpookyWings, 107 * 16f },
-        { ItemID.TatteredFairyWings, 107 * 16f },
-        { ItemID.SteampunkWings, 107 * 16f },
-        { ItemID.BetsyWings, 119 * 16f },
-        { ItemID.RainbowWings, 128 * 16f },
-        { ItemID.FishronWings, 143 * 16f },
-        { ItemID.WingsNebula, 143 * 16f },
-        { ItemID.WingsVortex, 143 * 16f },
-        { ItemID.WingsSolar, 167 * 16f },
-        { ItemID.WingsStardust, 167 * 16f },
-        { ItemID.LongRainbowTrailWings, 201 * 16f },
+        { ArmorIDs.Wing.CreativeWings, 18 * 16f },
+        { ArmorIDs.Wing.AngelWings, 53 * 16f },
+        { ArmorIDs.Wing.DemonWings, 53 * 16f },
+        { ArmorIDs.Wing.FairyWings, 67 * 16f },
+        { ArmorIDs.Wing.FinWings, 67 * 16f },
+        { ArmorIDs.Wing.FrozenWings, 67 * 16f },
+        { ArmorIDs.Wing.HarpyWings, 67 * 16f },
+        { ArmorIDs.Wing.Jetpack, 77 * 16f },
+        { ArmorIDs.Wing.RedsWings, 77 * 16f },
+        { ArmorIDs.Wing.DTownsWings, 77 * 16f },
+        { ArmorIDs.Wing.WillsWings, 77 * 16f },
+        { ArmorIDs.Wing.CrownosWings, 77 * 16f },
+        { ArmorIDs.Wing.CenxsWings, 77 * 16f },
+        { ArmorIDs.Wing.LazuresBarrierPlatform, 77 * 16f },
+        { ArmorIDs.Wing.Yoraiz0rsSpell, 77 * 16f },
+        { ArmorIDs.Wing.JimsWings, 77 * 16f },
+        { ArmorIDs.Wing.SkiphssPaws, 77 * 16f },
+        { ArmorIDs.Wing.LokisWings, 77 * 16f },
+        { ArmorIDs.Wing.ArkhalisWings, 77 * 16f },
+        { ArmorIDs.Wing.LeinforsWings, 77 * 16f },
+        { ArmorIDs.Wing.GhostarsWings, 77 * 16f },
+        { ArmorIDs.Wing.SafemanWings, 77 * 16f },
+        { ArmorIDs.Wing.FoodBarbarianWings, 77 * 16f },
+        { ArmorIDs.Wing.GroxTheGreatWings, 77 * 16f },
+        { ArmorIDs.Wing.LeafWings, 81 * 16f },
+        { ArmorIDs.Wing.BatWings, 81 * 16f },
+        { ArmorIDs.Wing.BeeWings, 81 * 16f },
+        { ArmorIDs.Wing.ButterflyWings, 81 * 16f },
+        { ArmorIDs.Wing.FlameWings, 81 * 16f },
+        { ArmorIDs.Wing.Hoverboard, 94 * 16f },
+        { ArmorIDs.Wing.BoneWings, 94 * 16f },
+        { ArmorIDs.Wing.MothronWings, 94 * 16f },
+        { ArmorIDs.Wing.SpectreWings, 94 * 16f },
+        { ArmorIDs.Wing.BeetleWings, 94 * 16f },
+        { ArmorIDs.Wing.FestiveWings, 107 * 16f },
+        { ArmorIDs.Wing.SpookyWings, 107 * 16f },
+        { ArmorIDs.Wing.TatteredFairyWings, 107 * 16f },
+        { ArmorIDs.Wing.SteampunkWings, 107 * 16f },
+        { ArmorIDs.Wing.BetsyWings, 119 * 16f },
+        { ArmorIDs.Wing.RainbowWings, 128 * 16f },
+        { ArmorIDs.Wing.FishronWings, 143 * 16f },
+        { ArmorIDs.Wing.NebulaMantle, 143 * 16f },
+        { ArmorIDs.Wing.VortexBooster, 143 * 16f },
+        { ArmorIDs.Wing.SolarWings, 167 * 16f },
+        { ArmorIDs.Wing.StardustWings, 167 * 16f },
+        { ArmorIDs.Wing.LongTrailRainbowWings, 201 * 16f },
     };
 
-    private WingStats() { }
-
-    public static WingStats? Get(Item item)
+    public override bool ItemMeetsDefaultCondition(Item item)
     {
-        if (item.wingSlot <= 0)
-            return null;
-
-        var stats = new WingStats();
-        var vanillaStats = Main.LocalPlayer.GetWingStats(item.wingSlot);
-
-        stats.FlightTime = vanillaStats.FlyTime;
-        // TODO: calculate flight height
-        stats.FlightHeight = VanillaFlightHeight.GetValueOrDefault(item.type, -1f);
-        stats.MaxHSpeed = vanillaStats.AccRunSpeedOverride;
-        stats.HAccelerationMult = vanillaStats.AccRunAccelerationMult;
-        stats.CanHover = vanillaStats.HasDownHoverStats;
-        stats.MaxHSpeedHover = vanillaStats.DownHoverSpeedOverride;
-        stats.HAccelerationMultHover = vanillaStats.DownHoverAccelerationMult;
-
-        return stats;
+        return item.wingSlot > 0;
     }
 
-    public override void Apply(List<TooltipLine> tooltips)
+    protected override void SetStatsFromItem(Item item)
     {
-        if (WingStatsConfig.Instance.Enabled)
+        var vanillaStats = Main.LocalPlayer.GetWingStats(item.wingSlot);
+        // Copied this check from from Player.GetWingStats
+        if (item.wingSlot <= 0 || item.wingSlot >= ArmorIDs.Wing.Sets.Stats.Length)
             return;
 
-        // Flight
-        if (WingStatsConfig.Instance.FlightTimeTooltipEnabled)
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.FlightTime", (decimal)MathUtils.Round(FlightTime / 60f, 0.1f)));
+        FlightTime = vanillaStats.FlyTime;
+        // TODO: calculate flight height after content is setup
+        FlightHeight = VanillaFlightHeight.GetValueOrDefault(item.wingSlot, null);
+        MaxHSpeed = vanillaStats.AccRunSpeedOverride;
+        HAccelerationMult = vanillaStats.AccRunAccelerationMult;
+        CanHover = vanillaStats.HasDownHoverStats;
+        MaxHSpeedHover = vanillaStats.DownHoverSpeedOverride;
+        HAccelerationMultHover = vanillaStats.DownHoverAccelerationMult;
+    }
 
-        if (WingStatsConfig.Instance.FlightHeightTooltipEnabled)
+    public override IEnumerable<TooltipLine> GetTooltips()
+    {
+        // Flight
+        if (Config.FlightTimeTooltipEnabled && FlightTime is not null)
+            yield return TooltipUtils.GetTooltipLine("WingStats.FlightTime", MathUtils.Round(FlightTime.Value / 60f, 0.1f));
+
+        if (Config.FlightHeightTooltipEnabled)
         {
-            tooltips.Add(
-                FlightHeight != -1f
-                    ? TooltipUtils.GetTooltipLine("WingStats.FlightHeight", (decimal)MathUtils.Round(FlightHeight / 16f, 0.1f))
-                    : TooltipUtils.GetTooltipLine("WingStats.FlightHeightUnknown")
-            );
+            yield return 
+                FlightHeight is not null
+                    ? TooltipUtils.GetTooltipLine("WingStats.FlightHeight", MathUtils.Round(FlightHeight.Value / 16f, 0.1f))
+                    : TooltipUtils.GetTooltipLine("WingStats.FlightHeightUnknown");
         }
 
         // Horizontal motion
-        if (WingStatsConfig.Instance.MaxHSpeedTooltipEnabled)
-            tooltips.Add(MaxHSpeed != -1f ? TooltipUtils.GetTooltipLine("WingStats.MaxHSpeed", (decimal)MathUtils.Round(MaxHSpeed * MathUtils.PPTToMPH, 0.1f)) : TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedUnknown"));
+        if (Config.MaxHSpeedTooltipEnabled && MaxHSpeed is not null)
+            yield return TooltipUtils.GetTooltipLine("WingStats.MaxHSpeed", MathUtils.Round(MaxHSpeed.Value * MathUtils.PPTToMPH, 0.1f));
 
-        if (WingStatsConfig.Instance.HAccelerationMultTooltipEnabled)
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.HAccelerationMult", HAccelerationMult));
+        if (Config.HAccelerationMultTooltipEnabled && HAccelerationMult is not null)
+            yield return TooltipUtils.GetTooltipLine("WingStats.HAccelerationMult", HAccelerationMult.Value);
 
         // Hovering
         if (CanHover)
         {
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.CanHover"));
-            if (MaxHSpeedHover != -1f)
-                tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedHover", (decimal)MathUtils.Round(MaxHSpeedHover * MathUtils.PPTToMPH, 0.1f)));
-            else
-                tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedHoverUnknown"));
+            if (Config.CanHoverTooltipEnabled)
+                yield return TooltipUtils.GetTooltipLine("WingStats.CanHover");
 
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.HAccelerationMultHover", HAccelerationMultHover));
+            if (Config.MaxHSpeedHoverMultTooltipEnabled && MaxHSpeedHover is not null)
+                yield return TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedHover", MathUtils.Round(MaxHSpeedHover.Value * MathUtils.PPTToMPH, 0.1f));
+
+            if (Config.HAccelerationMultHoverTooltipEnabled && HAccelerationMultHover is not null)
+                yield return TooltipUtils.GetTooltipLine("WingStats.HAccelerationMultHover", HAccelerationMultHover.Value);
         }
 
         // Negates fall damage
-        if (WingStatsConfig.Instance.NegatesFallDamageTooltipEnabled)
-            tooltips.Add(TooltipUtils.GetTooltipLine("WingStats.NegatesFallDamage"));
+        if (Config.NegatesFallDamageTooltipEnabled)
+            yield return TooltipUtils.GetTooltipLine("WingStats.NegatesFallDamage");
     }
 }

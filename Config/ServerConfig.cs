@@ -10,7 +10,9 @@ public class ServerConfig : CustomConfig
 
     #region Improved Accessories
 
-    [Header("ImprovedAccessories"), ReloadRequired]
+    // ReSharper disable once ArrangeAttributes
+    [Header("ImprovedAccessories")]
+    [ReloadRequired]
     public bool ImprovedTerrasparkBoots = true;
     [ReloadRequired]
     public bool ImprovedAnkhShield = true;

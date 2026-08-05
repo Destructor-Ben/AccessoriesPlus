@@ -1,22 +1,25 @@
-﻿using AccessoriesPlus.Config;
+﻿using AccessoriesPlus.Config.SubConfigs;
 using AccessoriesPlus.Utilities;
+using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Content.StatTooltips;
 
-public class LightPetStats : Stats
+public class LightPetStats : TooltipStats
 {
-    public float Brightness { get; private set; } = -1f;
+    private static LightPetStatsConfig Config => LightPetStatsConfig.Instance;
+
+    public float? Brightness { get; private set; } = null;
     public bool Controllable { get; private set; } = false;
     public bool ExposesTreasure { get; private set; } = false;
     public bool ExposesEnemies { get; private set; } = false;
 
-    private static Dictionary<int, LightPetStats> VanillaLightPetStats = new()
+    private static readonly Dictionary<int, LightPetStats> VanillaLightPetStats = new()
     {
         {
             ItemID.ShadowOrb, new LightPetStats
             {
                 Brightness = 0.65f,
-                Controllable = true
+                Controllable = true,
             }
         },
         { ItemID.CrimsonHeart, new LightPetStats { Brightness = 0.65f } },
@@ -24,7 +27,7 @@ public class LightPetStats : Stats
             ItemID.MagicLantern, new LightPetStats
             {
                 Brightness = 0.65f,
-                ExposesTreasure = true
+                ExposesTreasure = true,
             }
         },
         { ItemID.FairyBell, new LightPetStats { Brightness = 0.8f } },
@@ -33,7 +36,7 @@ public class LightPetStats : Stats
             ItemID.WispinaBottle, new LightPetStats
             {
                 Brightness = 1.2f,
-                Controllable = true
+                Controllable = true,
             }
         },
         {
@@ -41,7 +44,7 @@ public class LightPetStats : Stats
             {
                 Brightness = 1.2f,
                 ExposesTreasure = true,
-                ExposesEnemies = true
+                ExposesEnemies = true,
             }
         },
         { ItemID.PumpkingPetItem, new LightPetStats { Brightness = 0.8f } },
@@ -49,29 +52,44 @@ public class LightPetStats : Stats
         { ItemID.FairyQueenPetItem, new LightPetStats { Brightness = 1.2f } },
     };
 
-    private LightPetStats() { }
+    public override bool Enabled => Config.Enabled;
+    public override List<ItemDefinition> Whitelist => Config.Whitelist;
+    public override List<ItemDefinition> Blacklist => Config.Blacklist;
 
-    public static LightPetStats? Get(Item item)
+    public override bool ItemMeetsDefaultCondition(Item item)
     {
-        return !ClientConfig.Instance.LightPetStatsConfig.Enabled || item.shoot <= ProjectileID.None || !ProjectileID.Sets.LightPet[item.shoot]
-            ? null
-            : VanillaLightPetStats.GetValueOrDefault(item.type, new());
+        // Fairy bell spawns a random projectile each time, so item.shoot test doesn't work on it
+        return (item.shoot > ProjectileID.None && ProjectileID.Sets.LightPet[item.shoot]) || item.type == ItemID.FairyBell;
     }
 
-    public override void Apply(List<TooltipLine> tooltips)
+    protected override void SetStatsFromItem(Item item)
     {
-        if (Brightness != -1f)
-            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.Brightness", (int)(Brightness * 100f)));
-        else
-            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.BrightnessUnknown"));
+        if (!VanillaLightPetStats.TryGetValue(item.type, out var stats))
+            return;
 
-        if (Controllable)
-            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.Controllable"));
+        Brightness = stats.Brightness;
+        Controllable = stats.Controllable;
+        ExposesTreasure = stats.ExposesTreasure;
+        ExposesEnemies = stats.ExposesEnemies;
+    }
 
-        if (ExposesEnemies)
-            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.ExposesEnemies"));
+    public override IEnumerable<TooltipLine> GetTooltips()
+    {
+        if (Config.BrightnessTooltipEnabled)
+        {
+            if (Brightness is not null)
+                yield return TooltipUtils.GetTooltipLine("LightPetStats.Brightness", (int)(Brightness * 100f));
+            else
+                yield return TooltipUtils.GetTooltipLine("LightPetStats.BrightnessUnknown");
+        }
 
-        if (ExposesTreasure)
-            tooltips.Add(TooltipUtils.GetTooltipLine("LightPetStats.ExposesTreasure"));
+        if (Controllable && Config.ControllableTooltipEnabled)
+            yield return TooltipUtils.GetTooltipLine("LightPetStats.Controllable");
+
+        if (ExposesEnemies && Config.ExposesEnemiesTooltipEnabled)
+            yield return TooltipUtils.GetTooltipLine("LightPetStats.ExposesEnemies");
+
+        if (ExposesTreasure && Config.ExposesTreasureTooltipEnabled)
+            yield return TooltipUtils.GetTooltipLine("LightPetStats.ExposesTreasure");
     }
 }

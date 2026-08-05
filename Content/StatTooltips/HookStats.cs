@@ -1,9 +1,10 @@
-﻿using AccessoriesPlus.Config;
+﻿/*
+using AccessoriesPlus.Config;
 using AccessoriesPlus.Utilities;
 
 namespace AccessoriesPlus.Content.StatTooltips;
 
-public class HookStats : Stats
+public class HookStats : TooltipStats
 {
     public enum LatchingMode
     {
@@ -43,7 +44,7 @@ public class HookStats : Stats
         { ItemID.BatHook, 16f * 31.25f },
         { ItemID.CandyCaneHook, 16f * 25f },
 
-        // Hardmode               
+        // Hardmode
         { ItemID.DualHook, 16f * 27.5f },
         { ItemID.QueenSlimeHook, 16f * 30f },
         { ItemID.ThornHook, 16f * 30f },
@@ -77,7 +78,7 @@ public class HookStats : Stats
         { ItemID.BatHook, 1 },
         { ItemID.CandyCaneHook, 1 },
 
-        // Hardmode               
+        // Hardmode
         { ItemID.DualHook, 2 },
         { ItemID.QueenSlimeHook, 1 },
         { ItemID.ThornHook, 3 },
@@ -111,7 +112,7 @@ public class HookStats : Stats
         { ItemID.BatHook, LatchingMode.Single },
         { ItemID.CandyCaneHook, LatchingMode.Single },
 
-        // Hardmode               
+        // Hardmode
         { ItemID.DualHook, LatchingMode.Individual },
         { ItemID.QueenSlimeHook, LatchingMode.Single },
         { ItemID.ThornHook, LatchingMode.Simultaneous },
@@ -145,7 +146,7 @@ public class HookStats : Stats
         { ItemID.BatHook, 20f },
         { ItemID.CandyCaneHook, 11f },
 
-        // Hardmode               
+        // Hardmode
         { ItemID.DualHook, 17f },
         { ItemID.QueenSlimeHook, 11f },
         { ItemID.ThornHook, 18f },
@@ -179,7 +180,7 @@ public class HookStats : Stats
         { ItemID.BatHook, 14f },
         { ItemID.CandyCaneHook, 11f },
 
-        // Hardmode               
+        // Hardmode
         { ItemID.DualHook, 11f },
         { ItemID.QueenSlimeHook, 11f },
         { ItemID.ThornHook, 12f },
@@ -192,8 +193,6 @@ public class HookStats : Stats
         { ItemID.LunarHook, 16f },
         { ItemID.StaticHook, 11f },
     };
-
-    private HookStats() { }
 
     public static HookStats? Get(Item item)
     {
@@ -287,3 +286,4 @@ public class HookStats : Stats
             tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.PullSpeedUnknown"));
     }
 }
+*/

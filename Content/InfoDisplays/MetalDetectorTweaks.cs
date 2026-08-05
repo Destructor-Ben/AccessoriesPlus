@@ -125,8 +125,9 @@ public class MetalDetectorTweaks : GlobalInfoDisplay
         if (tileType is TileID.Hellstone)
             name = Lang.GetItemNameValue(ItemID.Hellstone);
 
-        if (TileID.Sets.CountsAsGemTree[tileType])
-            name = Mods.AccessoriesPlus.InfoDisplays.GemTree.GetTextValue();
+        // TODO: fix
+        // if (TileID.Sets.CountsAsGemTree[tileType])
+        //     name = Mods.AccessoriesPlus.InfoDisplays.GemTree.GetTextValue();
 
         if (string.IsNullOrEmpty(name))
             name = TileID.Search.GetName(tileType);
