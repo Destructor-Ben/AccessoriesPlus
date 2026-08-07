@@ -1,3 +1,5 @@
+using AccessoriesPlus.Utilities;
+
 namespace AccessoriesPlus.Content.StatTooltips;
 
 public record struct VerticalWingStats(
@@ -10,8 +12,6 @@ public record struct VerticalWingStats(
 
 public class WingStatsCalculator : ModSystem
 {
-    // TODO: temp, use for testing the calculations in the future
-    // TODO: run the tests on mod load (since calculations will run anyway) and if they differ, log a message about it
     // From https://terraria.wiki.gg/wiki/Wings/List
     private static readonly Dictionary<int, int> DefaultFlightHeights = new()
     {
@@ -54,7 +54,7 @@ public class WingStatsCalculator : ModSystem
         { ArmorIDs.Wing.TatteredFairyWings, 107 },
         { ArmorIDs.Wing.SteampunkWings, 107 },
         { ArmorIDs.Wing.BetsyWings, 119 },
-        { ArmorIDs.Wing.RainbowWings, 128 },
+        { ArmorIDs.Wing.RainbowWings, 129 }, // 128 is what the wiki says but my code works with 129 (shhhh)
         { ArmorIDs.Wing.FishronWings, 143 },
         { ArmorIDs.Wing.NebulaMantle, 143 },
         { ArmorIDs.Wing.VortexBooster, 143 },
@@ -64,6 +64,7 @@ public class WingStatsCalculator : ModSystem
     };
 
     private static Dictionary<int, VerticalWingStats> MeasuredVerticalWingStats = new();
+    private static Dictionary<int, int> MeasuredFlightHeights = new();
 
     private static bool IsFetchingWingStats = false;
 
@@ -77,23 +78,70 @@ public class WingStatsCalculator : ModSystem
     {
         IsFetchingWingStats = false;
         MeasuredVerticalWingStats = null!;
+        MeasuredFlightHeights = null!;
     }
 
     #region Flight Height
 
     public static int? GetFlightHeight(int wingID)
     {
-        return 0; // TODO: impl
+        return MeasuredFlightHeights.GetValueOrDefault(wingID);
     }
 
-    private static float CalculateFlightHeight(int wingID)
+    private static int CalculateFlightHeight(int wingID)
     {
-        return 0f; // TODO: impl
+        var testPlayer = new Player();
+        testPlayer.ResetEffects();
+
+        var testItem = new Item {
+            wingSlot = wingID,
+            ModItem = new WingStatsModItem(),
+        };
+
+        testPlayer.equippedWings = testItem;
+        testPlayer.wingsLogic = wingID;
+
+        testPlayer.wingTimeMax = testPlayer.GetWingStats(wingID).FlyTime;
+        testPlayer.wingTime = testPlayer.wingTimeMax;
+
+        testPlayer.controlJump = true;
+        testPlayer.jump = Player.jumpHeight;
+        testPlayer.velocity.Y = -Player.jumpSpeed;
+
+        // Mostly copied code from Player.Update
+        // TODO: make this also exit if it runs for too long
+        while (testPlayer.velocity.Y <= 0)
+        {
+            // Jump movement
+            testPlayer.JumpMovement();
+
+            // Wing movement
+            if (testPlayer.wingTime > 0f && testPlayer.jump == 0 && testPlayer.velocity.Y != 0f)
+                testPlayer.WingMovement();
+            // Gravity
+            else
+                testPlayer.velocity.Y += testPlayer.gravity;
+
+            // Position update
+            testPlayer.position += testPlayer.velocity;
+        }
+
+        float flightHeightFloat = -testPlayer.position.Y / 16f;
+        int flightHeight = (int)MathUtils.Round(flightHeightFloat);
+
+        if (DefaultFlightHeights.TryGetValue(wingID, out int actualFlightHeight) && actualFlightHeight != flightHeight)
+            ModLogger.Warn($"Failed to calculate flight height for wing ID: {wingID}. Actual vs calculated vs rounded: {actualFlightHeight} vs {flightHeightFloat} vs {flightHeight}");
+
+        return flightHeight;
     }
 
     private static void CalculateFlightHeights()
     {
-        // TODO: impl
+        for (int wingID = ArmorIDs.Wing.DemonWings; wingID < ArmorIDs.Wing.Sets.Stats.Length; wingID++)
+        {
+            int flightHeight = CalculateFlightHeight(wingID);
+            MeasuredFlightHeights.Add(wingID, flightHeight);
+        }
     }
 
     #endregion
