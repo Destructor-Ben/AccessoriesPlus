@@ -52,6 +52,12 @@ public class WingStats : TooltipStats
         MaxHSpeedHover = vanillaStats.DownHoverSpeedOverride;
         HAccelerationMultHover = vanillaStats.DownHoverAccelerationMult;
 
+        if (MaxHSpeed == -1f)
+            MaxHSpeed = null;
+
+        if (MaxHSpeedHover == -1f)
+            MaxHSpeedHover = null;
+
         var verticalWingStats = WingStatsCalculator.GetVerticalWingStats(item.wingSlot);
         if (verticalWingStats is null)
             return;

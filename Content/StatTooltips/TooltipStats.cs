@@ -35,14 +35,14 @@ public abstract class TooltipStats
 
     public virtual void InsertTooltips(List<TooltipLine> tooltips, TooltipLine[] statTooltips)
     {
-        bool keybindPressed = Main.keyState.IsKeyDown(Keys.LeftAlt); // TODO: allow this to be configured
+        var keybind = StatTooltipsSystem.RevealStatsKeybind;
 
-        if (!PressKeyToRevealStats || keybindPressed)
+        if (!PressKeyToRevealStats || keybind.Current)
             tooltips.InsertTooltips(LineNameToInsertAround, After, statTooltips);
         else
         {
             var color = Main.MouseTextColorReal.MultiplyRGB(Color.LightGray);
-            tooltips.Add(TooltipUtils.GetTooltipLine("GeneralStats.PressKeyToRevealStats", "LEFT ALT", color.Hex3()));
+            tooltips.Add(TooltipUtils.GetTooltipLine("GeneralStats.PressKeyToRevealStats", keybind.GetAssignedKeybind(), color.Hex3()));
         }
     }
 }
