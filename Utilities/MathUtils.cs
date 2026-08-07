@@ -4,15 +4,8 @@ namespace AccessoriesPlus.Utilities;
 
 public static class MathUtils
 {
-    /// <summary>
-    /// A scalar to convert velocity in pixels per tick to miles per hour.
-    /// </summary>
-    public const float PPTToMPH = 216000f / 42240f;
-
-    /// <summary>
-    /// A scalar to convert acceleration in pixels per tick per tick to miles per hour per second.
-    /// </summary>
-    public const float PPTPTToMPHPS = PPTToMPH * 60f; // TODO: this isn't correct? should be divide, but then it doesn't work
+    public const float PixelsPerTick2MilesPerHour = 216000f / 42240f;
+    public const float PixelsPerTickPerTick2MilesPerHourPerSecond = PixelsPerTick2MilesPerHour * 60f;
 
     public static float Round(float value, float nearest = 1f)
     {

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using AccessoriesPlus.Utilities;
 
 namespace AccessoriesPlus.Content.StatTooltips;
@@ -109,7 +110,7 @@ public class WingStatsCalculator : ModSystem
         testPlayer.velocity.Y = -Player.jumpSpeed;
 
         // Mostly copied code from Player.Update
-        // TODO: make this also exit if it runs for too long
+        var startTime = Stopwatch.StartNew();
         while (testPlayer.velocity.Y <= 0)
         {
             // Jump movement
@@ -124,6 +125,12 @@ public class WingStatsCalculator : ModSystem
 
             // Position update
             testPlayer.position += testPlayer.velocity;
+
+            if (startTime.ElapsedMilliseconds < 500)
+                continue;
+
+            ModLogger.Warn($"Flight height calculation for wing ID {wingID} failed to run in under 500ms");
+            break;
         }
 
         float flightHeightFloat = -testPlayer.position.Y / 16f;

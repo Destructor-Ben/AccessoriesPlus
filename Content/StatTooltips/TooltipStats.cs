@@ -33,6 +33,7 @@ public abstract class TooltipStats
 
     public virtual void InsertTooltips(List<TooltipLine> tooltips, TooltipLine[] statTooltips)
     {
+        // TODO: insert an explanation tooltip at the end or
         tooltips.InsertTooltips(LineNameToInsertAround, After, statTooltips);
     }
 }

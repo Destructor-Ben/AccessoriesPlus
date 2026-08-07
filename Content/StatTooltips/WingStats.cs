@@ -8,11 +8,6 @@ public class WingStats : TooltipStats
 {
     private static WingStatsConfig Config => WingStatsConfig.Instance;
 
-    // TODO: test all stats by comparing to values on the wiki (except for flight height)
-    // TODO: ensure speed and acceleration calculations are correct
-    // TODO: test whitelist + blacklist
-    // TODO: test hybrid wing + boot items
-
     public float? FlightTime { get; private set; } = null;
     public int? FlightHeight { get; private set; } = null;
 
@@ -79,7 +74,7 @@ public class WingStats : TooltipStats
 
         // Horizontal motion
         if (Config.MaxHSpeedTooltipEnabled && MaxHSpeed is not null)
-            yield return TooltipUtils.GetTooltipLine("WingStats.MaxHSpeed", (MaxHSpeed.Value * MathUtils.PPTToMPH).ToNiceString(1));
+            yield return TooltipUtils.GetTooltipLine("WingStats.MaxHSpeed", (MaxHSpeed.Value * MathUtils.PixelsPerTick2MilesPerHour).ToNiceString(1));
 
         if (Config.HAccelerationMultTooltipEnabled && HAccelerationMult is not null)
             yield return TooltipUtils.GetTooltipLine("WingStats.HAccelerationMult", (HAccelerationMult * 100).Value.ToNiceString(0));
@@ -88,7 +83,7 @@ public class WingStats : TooltipStats
         if (CanHover)
         {
             if (Config.MaxHSpeedHoverTooltipEnabled && MaxHSpeedHover is not null)
-                yield return TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedHover", (MaxHSpeedHover.Value * MathUtils.PPTToMPH).ToNiceString(1));
+                yield return TooltipUtils.GetTooltipLine("WingStats.MaxHSpeedHover", (MaxHSpeedHover.Value * MathUtils.PixelsPerTick2MilesPerHour).ToNiceString(1));
 
             if (Config.HAccelerationMultHoverTooltipEnabled && HAccelerationMultHover is not null)
                 yield return TooltipUtils.GetTooltipLine("WingStats.HAccelerationMultHover", (HAccelerationMultHover * 100).Value.ToNiceString(0));
@@ -102,13 +97,13 @@ public class WingStats : TooltipStats
             yield return TooltipUtils.GetTooltipLine("WingStats.MaxCanAscendMultiplier", (MaxCanAscendMultiplier * 100).Value.ToNiceString(0));
 
         if (Config.ConstantAscendTooltipEnabled && ConstantAscend is not null)
-            yield return TooltipUtils.GetTooltipLine("WingStats.ConstantAscend", (ConstantAscend.Value * MathUtils.PPTPTToMPHPS).ToNiceString(1));
+            yield return TooltipUtils.GetTooltipLine("WingStats.ConstantAscend", (ConstantAscend.Value * MathUtils.PixelsPerTickPerTick2MilesPerHourPerSecond).ToNiceString(1));
 
         if (Config.AscentWhenRisingTooltipEnabled && AscentWhenRising is not null)
-            yield return TooltipUtils.GetTooltipLine("WingStats.AscentWhenRising", (AscentWhenRising * MathUtils.PPTPTToMPHPS).Value.ToNiceString(1));
+            yield return TooltipUtils.GetTooltipLine("WingStats.AscentWhenRising", (AscentWhenRising * MathUtils.PixelsPerTickPerTick2MilesPerHourPerSecond).Value.ToNiceString(1));
 
         if (Config.AscentWhenFallingTooltipEnabled && AscentWhenFalling is not null)
-            yield return TooltipUtils.GetTooltipLine("WingStats.AscentWhenFalling", (AscentWhenFalling * MathUtils.PPTPTToMPHPS).Value.ToNiceString(1));
+            yield return TooltipUtils.GetTooltipLine("WingStats.AscentWhenFalling", (AscentWhenFalling * MathUtils.PixelsPerTickPerTick2MilesPerHourPerSecond).Value.ToNiceString(1));
     }
 
     public override void InsertTooltips(List<TooltipLine> tooltips, TooltipLine[] statTooltips)
