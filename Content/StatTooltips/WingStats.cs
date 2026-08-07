@@ -25,6 +25,7 @@ public class WingStats : TooltipStats
     public float? AscentWhenFalling { get; private set; } = null;
 
     public override bool Enabled => Config.Enabled;
+    public override bool PressKeyToRevealStats => Config.PressKeyToRevealStats;
     public override List<ItemDefinition> Whitelist => Config.Whitelist;
     public override List<ItemDefinition> Blacklist => Config.Blacklist;
 

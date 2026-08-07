@@ -9,6 +9,7 @@ public record HookStatsConfig
     public static HookStatsConfig Instance => ClientConfig.Instance.HookStatsConfig;
 
     public bool Enabled = true;
+    public bool PressKeyToRevealStats = false;
 
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];

@@ -9,6 +9,7 @@ public record LightPetStatsConfig
     public static LightPetStatsConfig Instance => ClientConfig.Instance.LightPetStatsConfig;
 
     public bool Enabled = true;
+    public bool PressKeyToRevealStats = false;
 
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];

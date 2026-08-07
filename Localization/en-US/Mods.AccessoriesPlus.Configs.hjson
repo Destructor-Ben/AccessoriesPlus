@@ -2,6 +2,11 @@ Common: {
 	TooltipWhitelist: A list of items to include for receiving these stat tooltips in addition to the automatically detected items
 	TooltipBlacklist: A list of items to exclude from receiving these stat tooltips, regardless of whether they are whitelisted or not
 	TooltipLinesHeader: Tooltip Line Toggles
+	PressKeyToRevealStats:
+		'''
+		Whether to only show tooltip stats when a keybind is pressed
+		The keybind can be configured in the controls menu
+		'''
 }
 
 ClientConfig: {
@@ -41,6 +46,11 @@ WingStatsConfig: {
 	Enabled: {
 		Label: Enabled
 		Tooltip: Whether to enable stat tooltips for wings
+	}
+
+	PressKeyToRevealStats: {
+		Label: Press Key To Reveal Stats
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.PressKeyToRevealStats}"
 	}
 
 	Whitelist: {
@@ -133,6 +143,11 @@ HookStatsConfig: {
 		Tooltip: ""
 	}
 
+	PressKeyToRevealStats: {
+		Label: Press Key To Reveal Stats
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.PressKeyToRevealStats}"
+	}
+
 	Whitelist: {
 		Label: Whitelist
 		Tooltip: ""
@@ -183,6 +198,11 @@ LightPetStatsConfig: {
 		Tooltip: Whether to enable stat tooltips for light pets
 	}
 
+	PressKeyToRevealStats: {
+		Label: Press Key To Reveal Stats
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.PressKeyToRevealStats}"
+	}
+
 	Whitelist: {
 		Label: Item Whitelist
 		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.TooltipWhitelist}"
@@ -221,6 +241,11 @@ MinecartStatsConfig: {
 	Enabled: {
 		Label: Enabled
 		Tooltip: ""
+	}
+
+	PressKeyToRevealStats: {
+		Label: Press Key To Reveal Stats
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.PressKeyToRevealStats}"
 	}
 
 	Whitelist: {
@@ -271,6 +296,11 @@ MountStatsConfig: {
 	Enabled: {
 		Label: Enabled
 		Tooltip: ""
+	}
+
+	PressKeyToRevealStats: {
+		Label: Press Key To Reveal Stats
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.PressKeyToRevealStats}"
 	}
 
 	Whitelist: {

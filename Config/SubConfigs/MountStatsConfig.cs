@@ -9,6 +9,7 @@ public record MountStatsConfig
     public static MountStatsConfig Instance => ClientConfig.Instance.MountStatsConfig;
 
     public bool Enabled = true;
+    public bool PressKeyToRevealStats = false;
 
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];

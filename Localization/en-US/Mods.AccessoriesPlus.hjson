@@ -41,6 +41,7 @@ Tooltips: {
 	AnkhShield2: Enemies are more likely to target you
 	BundleOfBalloons0: Allows the holder to sextuple jump
 	Radar0: Detects enemies and danger around you
+	GeneralStats.PressKeyToRevealStats: "[c/{1}:Press {0} to show stats]"
 
 	WingStats: {
 		NegatesFallDamage: Negates fall damage

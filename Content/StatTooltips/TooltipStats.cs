@@ -1,4 +1,5 @@
 ﻿using AccessoriesPlus.Utilities;
+using Microsoft.Xna.Framework.Input;
 using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Content.StatTooltips;
@@ -9,6 +10,7 @@ public abstract class TooltipStats
     public virtual bool After => true;
 
     public abstract bool Enabled { get; }
+    public abstract bool PressKeyToRevealStats { get; }
     public abstract List<ItemDefinition> Whitelist { get; }
     public abstract List<ItemDefinition> Blacklist { get; }
 
@@ -33,7 +35,14 @@ public abstract class TooltipStats
 
     public virtual void InsertTooltips(List<TooltipLine> tooltips, TooltipLine[] statTooltips)
     {
-        // TODO: insert an explanation tooltip at the end or
-        tooltips.InsertTooltips(LineNameToInsertAround, After, statTooltips);
+        bool keybindPressed = Main.keyState.IsKeyDown(Keys.LeftAlt); // TODO: allow this to be configured
+
+        if (!PressKeyToRevealStats || keybindPressed)
+            tooltips.InsertTooltips(LineNameToInsertAround, After, statTooltips);
+        else
+        {
+            var color = Main.MouseTextColorReal.MultiplyRGB(Color.LightGray);
+            tooltips.Add(TooltipUtils.GetTooltipLine("GeneralStats.PressKeyToRevealStats", "LEFT ALT", color.Hex3()));
+        }
     }
 }

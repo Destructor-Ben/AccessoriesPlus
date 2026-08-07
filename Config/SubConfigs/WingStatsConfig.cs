@@ -9,6 +9,7 @@ public record WingStatsConfig
     public static WingStatsConfig Instance => ClientConfig.Instance.WingStatsConfig;
 
     public bool Enabled = true;
+    public bool PressKeyToRevealStats = false;
 
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];

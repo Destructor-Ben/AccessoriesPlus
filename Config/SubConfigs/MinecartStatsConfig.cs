@@ -9,6 +9,7 @@ public record MinecartStatsConfig
     public static MinecartStatsConfig Instance => ClientConfig.Instance.MinecartStatsConfig;
 
     public bool Enabled = true;
+    public bool PressKeyToRevealStats = false;
 
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];
