@@ -1,5 +1,11 @@
 {
   "profiles": {
+    "Terraria Test": {
+      "commandName": "Executable",
+      "executablePath": "$(DotNetName)",
+      "commandLineArgs": "$(tMLPath)",
+      "workingDirectory": "$(tMLSteamPath)"
+    },
     "Terraria Client": {
       "commandName": "Executable",
       "executablePath": "$(DotNetName)",

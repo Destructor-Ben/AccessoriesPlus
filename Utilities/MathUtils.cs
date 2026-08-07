@@ -19,8 +19,8 @@ public static class MathUtils
         return MathF.Round(value / nearest) * nearest;
     }
 
-    public static string ToNiceString(this float f)
+    public static string ToNiceString(this float f, int decimalPlaces)
     {
-        return f.ToString("", CultureInfo.InvariantCulture);
+        return f.ToString($"F{decimalPlaces}", CultureInfo.InvariantCulture);
     }
 }

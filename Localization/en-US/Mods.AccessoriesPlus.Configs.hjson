@@ -1,6 +1,7 @@
 Common: {
 	TooltipWhitelist: A list of items to include for receiving these stat tooltips in addition to the automatically detected items
 	TooltipBlacklist: A list of items to exclude from receiving these stat tooltips, regardless of whether they are whitelisted or not
+	TooltipLinesHeader: Tooltip Line Toggles
 }
 
 ClientConfig: {
@@ -8,92 +9,124 @@ ClientConfig: {
 	Headers.StatTooltips: Stat Tooltips
 
 	WingStatsConfig: {
-		Label: "[i:WingsSolar] Wing Stats"
+		Label: "[i:CreativeWings] Wing Stats"
 		Tooltip: ""
 	}
 
 	HookStatsConfig: {
-		Label: "[i:LunarHook] Hook Stats"
+		Label: "[i:GrapplingHook] Hook Stats"
 		Tooltip: ""
 	}
 
 	LightPetStatsConfig: {
-		Label: "[i:SuspiciousLookingTentacle] Light Pet Stats"
+		Label: "[i:MagicLantern] Light Pet Stats"
 		Tooltip: ""
 	}
 
 	MinecartStatsConfig: {
-		Label: "[i:MeowmereMinecart] Minecart Stats"
+		Label: "[i:Minecart] Minecart Stats"
 		Tooltip: ""
 	}
 
 	MountStatsConfig: {
-		Label: "[i:DrillContainmentUnit] Mount Stats"
+		Label: "[i:SlimySaddle] Mount Stats"
 		Tooltip: ""
 	}
 }
 
 WingStatsConfig: {
 	Tooltip: ""
+	Headers.TooltipLines: "{$Mods.AccessoriesPlus.Configs.Common.TooltipLinesHeader}"
 
 	Enabled: {
 		Label: Enabled
-		Tooltip: ""
+		Tooltip: Whether to enable stat tooltips for wings
 	}
 
 	Whitelist: {
-		Label: Whitelist
-		Tooltip: ""
+		Label: Item Whitelist
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.TooltipWhitelist}"
 	}
 
 	Blacklist: {
-		Label: Blacklist
-		Tooltip: ""
+		Label: Item Blacklist
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.TooltipBlacklist}"
 	}
 
-	FlightTimeTooltipEnabled: {
-		Label: Flight Time Tooltip Enabled
-		Tooltip: ""
+	AddMissingFlightTooltip: {
+		Label: Add Missing '{$CommonItemTooltip.FlightAndSlowfall}' Tooltip
+		Tooltip: Whether to enable automatically adding the '{$CommonItemTooltip.FlightAndSlowfall}' tooltip if some mods forget to add them to their wings
 	}
 
-	FlightHeightTooltipEnabled: {
-		Label: Flight Height Tooltip Enabled
-		Tooltip: ""
-	}
-
-	MaxHSpeedTooltipEnabled: {
-		Label: Max H Speed Tooltip Enabled
-		Tooltip: ""
-	}
-
-	HAccelerationMultTooltipEnabled: {
-		Label: H Acceleration Mult Tooltip Enabled
+	NegatesFallDamageTooltipEnabled: {
+		Label: Negates Fall Damage
 		Tooltip: ""
 	}
 
 	CanHoverTooltipEnabled: {
-		Label: Can Hover Tooltip Enabled
+		Label: Can Hover
 		Tooltip: ""
 	}
 
-	MaxHSpeedHoverMultTooltipEnabled: {
-		Label: Max H Speed Hover Mult Tooltip Enabled
+	FlightTimeTooltipEnabled: {
+		Label: Flight Time
+		Tooltip: ""
+	}
+
+	FlightHeightTooltipEnabled: {
+		Label: Flight Height
+		Tooltip: ""
+	}
+
+	MaxHSpeedTooltipEnabled: {
+		Label: Max Horizontal Speed
+		Tooltip: ""
+	}
+
+	HAccelerationMultTooltipEnabled: {
+		Label: Horizontal Acceleration Multiplier
+		Tooltip: ""
+	}
+
+	MaxHSpeedHoverTooltipEnabled: {
+		Label: Max Horizontal Speed While Hovering
 		Tooltip: ""
 	}
 
 	HAccelerationMultHoverTooltipEnabled: {
-		Label: H Acceleration Mult Hover Tooltip Enabled
+		Label: Horizontal Acceleration Multiplier While Hovering
 		Tooltip: ""
 	}
 
-	NegatesFallDamageTooltipEnabled: {
-		Label: Negates Fall Damage Tooltip Enabled
+	MaxAscentMultiplierTooltipEnabled: {
+		Label: Max Vertical Speed Multiplier
+		Tooltip: ""
+	}
+
+	MaxCanAscendMultiplierTooltipEnabled: {
+		Label: Rising Cutoff Multiplier
+		Tooltip: ""
+	}
+
+	ConstantAscendTooltipEnabled: {
+		Label: Constant Vertical Acceleration
+		Tooltip: ""
+	}
+
+	AscentWhenRisingTooltipEnabled: {
+		Label: Vertical Acceleration When Rising
+		Tooltip: ""
+	}
+
+	AscentWhenFallingTooltipEnabled: {
+		Label: Vertical Acceleration When Falling
 		Tooltip: ""
 	}
 }
 
 HookStatsConfig: {
 	Tooltip: ""
+	Headers.TooltipLines: "{$Mods.AccessoriesPlus.Configs.Common.TooltipLinesHeader}"
 
 	Enabled: {
 		Label: Enabled
@@ -143,6 +176,7 @@ HookStatsConfig: {
 
 LightPetStatsConfig: {
 	Tooltip: ""
+	Headers.TooltipLines: "{$Mods.AccessoriesPlus.Configs.Common.TooltipLinesHeader}"
 
 	Enabled: {
 		Label: Enabled
@@ -161,27 +195,28 @@ LightPetStatsConfig: {
 
 	BrightnessTooltipEnabled: {
 		Label: Brightness Tooltip
-		Tooltip: Whether to enable the brightness tooltip
+		Tooltip: ""
 	}
 
 	ControllableTooltipEnabled: {
 		Label: Controllable Tooltip
-		Tooltip: Whether to enable the '{$Mods.AccessoriesPlus.Tooltips.LightPetStats.Controllable}' tooltip
+		Tooltip: ""
 	}
 
 	ExposesTreasureTooltipEnabled: {
 		Label: Reveals Treasure Tooltip
-		Tooltip: Whether to enable the '{$Mods.AccessoriesPlus.Tooltips.LightPetStats.ExposesTreasure}' tooltip
+		Tooltip: ""
 	}
 
 	ExposesEnemiesTooltipEnabled: {
 		Label: Reveals Enemies Tooltip
-		Tooltip: Whether to enable the '{$Mods.AccessoriesPlus.Tooltips.LightPetStats.ExposesEnemies}' tooltip
+		Tooltip: ""
 	}
 }
 
 MinecartStatsConfig: {
 	Tooltip: ""
+	Headers.TooltipLines: "{$Mods.AccessoriesPlus.Configs.Common.TooltipLinesHeader}"
 
 	Enabled: {
 		Label: Enabled
@@ -231,6 +266,7 @@ MinecartStatsConfig: {
 
 MountStatsConfig: {
 	Tooltip: ""
+	Headers.TooltipLines: "{$Mods.AccessoriesPlus.Configs.Common.TooltipLinesHeader}"
 
 	Enabled: {
 		Label: Enabled

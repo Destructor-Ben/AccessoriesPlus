@@ -44,16 +44,18 @@ Tooltips: {
 
 	WingStats: {
 		NegatesFallDamage: Negates fall damage
-		FlightTime: "{0} {^0:second;seconds} flight time"
-		FlightHeight: "{0} {^0:tile;tiles} flight height"
-		FlightHeightUnknown: Unknown flight height
-		MaxHSpeed: "{0} mph max horizontal speed"
-		MaxHSpeedUnknown: No max horizontal speed
-		HAccelerationMult: "{0}x horizontal acceleration"
 		CanHover: Can hover
+		FlightTime: "{0} {^1:second;seconds} flight time"
+		FlightHeight: "{0} {^0:tile;tiles} flight height"
+		MaxHSpeed: "{0} mph max horizontal speed"
 		MaxHSpeedHover: "{0} mph max horizontal speed while hovering"
-		MaxHSpeedHoverUnknown: No max horizontal speed while hovering
-		HAccelerationMultHover: "{0}x horizontal acceleration while hovering"
+		HAccelerationMult: "{0}% horizontal acceleration"
+		HAccelerationMultHover: "{0}% horizontal acceleration while hovering"
+		MaxAscentMultiplier: "{0}% max vertical speed"
+		MaxCanAscendMultiplier: "{0}% cutoff to be considered rising"
+		ConstantAscend: "{0} mph/s constant vertical acceleration"
+		AscentWhenRising: "{0} mph/s vertical acceleration when rising"
+		AscentWhenFalling: "{0} mph/s vertical acceleration when falling"
 	}
 
 	HookStats: {

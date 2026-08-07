@@ -13,6 +13,7 @@ public record MinecartStatsConfig
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];
 
+    [Header("TooltipLines")]
     public bool RunSpeedTooltipEnabled = true;
     public bool AccelerationTooltipEnabled = true;
     public bool JumpSpeedTooltipEnabled = true;

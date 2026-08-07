@@ -13,6 +13,7 @@ public record HookStatsConfig
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];
 
+    [Header("TooltipLines")]
     public bool ReachTooltipEnabled = true;
     public bool NumHooksTooltipEnabled = true;
     public bool LatchingTooltipEnabled = true;

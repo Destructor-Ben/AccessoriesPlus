@@ -13,6 +13,7 @@ public record LightPetStatsConfig
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];
 
+    [Header("TooltipLines")]
     public bool BrightnessTooltipEnabled = true;
     public bool ControllableTooltipEnabled = true;
     public bool ExposesTreasureTooltipEnabled = true;

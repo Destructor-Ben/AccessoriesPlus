@@ -13,6 +13,7 @@ public record MountStatsConfig
     public List<ItemDefinition> Whitelist = [];
     public List<ItemDefinition> Blacklist = [];
 
+    [Header("TooltipLines")]
     public bool FlightTimeTooltipEnabled = true;
     public bool CanHoverTooltipEnabled = true;
     public bool RunSpeedTooltipEnabled = true;
