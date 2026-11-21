@@ -60,14 +60,14 @@ Tooltips: {
 	}
 
 	HookStats: {
-		Reach: "{0} {^0:tile;tiles} reach"
-		ReachUnknown: Unknown reach
 		NumHooks: "{0} {^0:hook;hooks}"
 		NumHooksUnknown: Unknown number of hooks
 		LatchingSingle: Single hook latching
 		LatchingIndividual: Individual hook latching
 		LatchingSimultaneous: Simultaneous hook latching
 		LatchingUnknown: Unknown hook latching
+		Reach: "{0} {^1:tile;tiles} reach"
+		ReachUnknown: Unknown reach
 		ShootSpeed: "{0} mph shoot speed"
 		ShootSpeedUnknown: Unknown shoot speed
 		RetreatSpeed: "{0} mph retreat speed"
@@ -107,6 +107,6 @@ Items: {
 }
 
 Keybinds: {
-  Unknown: Unknown
-  RevealStatsKeybind.DisplayName: Reveal Stats Keybind
+	Unknown: Unknown
+	RevealStatsKeybind.DisplayName: Reveal Stats Keybind
 }

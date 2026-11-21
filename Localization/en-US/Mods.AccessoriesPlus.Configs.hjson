@@ -140,7 +140,7 @@ HookStatsConfig: {
 
 	Enabled: {
 		Label: Enabled
-		Tooltip: ""
+		Tooltip: Whether to enable stat tooltips for grappling hooks
 	}
 
 	PressKeyToRevealStats: {
@@ -149,42 +149,42 @@ HookStatsConfig: {
 	}
 
 	Whitelist: {
-		Label: Whitelist
-		Tooltip: ""
+		Label: Item Whitelist
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.TooltipWhitelist}"
 	}
 
 	Blacklist: {
-		Label: Blacklist
-		Tooltip: ""
-	}
-
-	ReachTooltipEnabled: {
-		Label: Reach Tooltip Enabled
-		Tooltip: ""
+		Label: Item Blacklist
+		Tooltip: "{$Mods.AccessoriesPlus.Configs.Common.TooltipBlacklist}"
 	}
 
 	NumHooksTooltipEnabled: {
-		Label: Num Hooks Tooltip Enabled
+		Label: Number of Hooks
 		Tooltip: ""
 	}
 
 	LatchingTooltipEnabled: {
-		Label: Latching Tooltip Enabled
+		Label: Latching Mode
+		Tooltip: ""
+	}
+
+	ReachTooltipEnabled: {
+		Label: Reach
 		Tooltip: ""
 	}
 
 	ShootSpeedTooltipEnabled: {
-		Label: Shoot Speed Tooltip Enabled
+		Label: Shoot Speed
 		Tooltip: ""
 	}
 
 	RetreatSpeedTooltipEnabled: {
-		Label: Retreat Speed Tooltip Enabled
+		Label: Retreat Speed
 		Tooltip: ""
 	}
 
 	PullSpeedTooltipEnabled: {
-		Label: Pull Speed Tooltip Enabled
+		Label: Pull Speed
 		Tooltip: ""
 	}
 }
@@ -214,22 +214,22 @@ LightPetStatsConfig: {
 	}
 
 	BrightnessTooltipEnabled: {
-		Label: Brightness Tooltip
+		Label: Brightness
 		Tooltip: ""
 	}
 
 	ControllableTooltipEnabled: {
-		Label: Controllable Tooltip
+		Label: Controllable
 		Tooltip: ""
 	}
 
 	ExposesTreasureTooltipEnabled: {
-		Label: Reveals Treasure Tooltip
+		Label: Reveals Treasure
 		Tooltip: ""
 	}
 
 	ExposesEnemiesTooltipEnabled: {
-		Label: Reveals Enemies Tooltip
+		Label: Reveals Enemies
 		Tooltip: ""
 	}
 }

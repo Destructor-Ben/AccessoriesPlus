@@ -74,7 +74,7 @@ public class WingStats : TooltipStats
     {
         // Flight
         if (Config.FlightTimeTooltipEnabled && FlightTime is not null)
-            yield return TooltipUtils.GetTooltipLine("WingStats.FlightTime", (FlightTime.Value / 60f).ToNiceString(1), MathF.Floor(FlightTime.Value));
+            yield return TooltipUtils.GetTooltipLine("WingStats.FlightTime", (FlightTime.Value / 60f).ToNiceString(1), 0 /* TODO: proper pluralization */);
 
         if (Config.FlightHeightTooltipEnabled && FlightHeight is not null)
             yield return TooltipUtils.GetTooltipLine("WingStats.FlightHeight", FlightHeight.Value);

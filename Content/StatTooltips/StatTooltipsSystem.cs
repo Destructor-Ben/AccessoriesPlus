@@ -17,9 +17,9 @@ public class StatTooltipsSystem : GlobalItem
     public static TooltipStats? GetStats(Item item)
     {
         return new WingStats().FetchStats(item)
-               // ?? new HookStats().FetchStats(item)
-            ?? new LightPetStats().FetchStats(item);
-        // ?? new MountStats().FetchStats(item);
+            ?? new HookStats().FetchStats(item)
+            ?? new LightPetStats().FetchStats(item)
+            ?? new MountStats().FetchStats(item);
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

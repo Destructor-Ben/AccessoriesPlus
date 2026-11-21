@@ -15,9 +15,9 @@ public record HookStatsConfig
     public List<ItemDefinition> Blacklist = [];
 
     [Header("TooltipLines")]
-    public bool ReachTooltipEnabled = true;
     public bool NumHooksTooltipEnabled = true;
     public bool LatchingTooltipEnabled = true;
+    public bool ReachTooltipEnabled = true;
     public bool ShootSpeedTooltipEnabled = true;
     public bool RetreatSpeedTooltipEnabled = true;
     public bool PullSpeedTooltipEnabled = true;

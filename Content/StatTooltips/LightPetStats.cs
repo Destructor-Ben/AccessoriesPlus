@@ -78,10 +78,9 @@ public class LightPetStats : TooltipStats
     {
         if (Config.BrightnessTooltipEnabled)
         {
-            if (Brightness is not null)
-                yield return TooltipUtils.GetTooltipLine("LightPetStats.Brightness", (int)(Brightness * 100f));
-            else
-                yield return TooltipUtils.GetTooltipLine("LightPetStats.BrightnessUnknown");
+            yield return Brightness is not null
+                ? TooltipUtils.GetTooltipLine("LightPetStats.Brightness", (int)(Brightness * 100f))
+                : TooltipUtils.GetTooltipLine("LightPetStats.BrightnessUnknown");
         }
 
         if (Controllable && Config.ControllableTooltipEnabled)

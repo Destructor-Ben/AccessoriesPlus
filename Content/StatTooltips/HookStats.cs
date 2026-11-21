@@ -1,6 +1,6 @@
-﻿/*
-using AccessoriesPlus.Config;
+﻿using AccessoriesPlus.Config.SubConfigs;
 using AccessoriesPlus.Utilities;
+using Terraria.ModLoader.Config;
 
 namespace AccessoriesPlus.Content.StatTooltips;
 
@@ -11,20 +11,22 @@ public class HookStats : TooltipStats
         Unknown,
         Single,
         Individual,
-        Simultaneous
+        Simultaneous,
     }
 
-    public float Reach { get; private set; } = -1f;
-    public int NumHooks { get; private set; } = -1;
+    private static HookStatsConfig Config => HookStatsConfig.Instance;
+
+    public int? NumHooks { get; private set; } = null;
     public LatchingMode Latching { get; private set; } = LatchingMode.Unknown;
-    public float ShootSpeed { get; private set; } = -1f;
-    public float RetreatSpeed { get; private set; } = -1f;
-    public float PullSpeed { get; private set; } = -1f;
+    public float? Reach { get; private set; } = null;
+    public float? ShootSpeed { get; private set; } = null;
+    public float? RetreatSpeed { get; private set; } = null;
+    public float? PullSpeed { get; private set; } = null;
 
     // TODO: combine these into a single dictionary of HookStats
     // TODO: for stats that have a dictionary, get it from the hooks that tML provides such as ProjectileLoader.GrapplePullSpeed and store it
-    // TODO: change item ids to projectile ids
-    public static Dictionary<int, float> VanillaReach { get; private set; } = new()
+    // TODO: change item ids to projectile ids?
+    public static Dictionary<int, float?> VanillaReach { get; private set; } = new()
     {
         // Pre hardmode
         { ItemID.GrapplingHook, 16f * 18.75f },
@@ -58,7 +60,7 @@ public class HookStats : TooltipStats
         { ItemID.StaticHook, 16f * 37.5f },
     };
 
-    public static Dictionary<int, int> VanillaNumHooks { get; private set; } = new()
+    public static Dictionary<int, int?> VanillaNumHooks { get; private set; } = new()
     {
         // Pre hardmode
         { ItemID.GrapplingHook, 1 },
@@ -126,7 +128,7 @@ public class HookStats : TooltipStats
         { ItemID.StaticHook, LatchingMode.Individual },
     };
 
-    public static Dictionary<int, float> VanillaRetreatSpeed { get; private set; } = new()
+    public static Dictionary<int, float?> VanillaRetreatSpeed { get; private set; } = new()
     {
         // Pre hardmode
         { ItemID.GrapplingHook, 11f },
@@ -160,7 +162,7 @@ public class HookStats : TooltipStats
         { ItemID.StaticHook, 24f },
     };
 
-    public static Dictionary<int, float> VanillaPullSpeed { get; private set; } = new()
+    public static Dictionary<int, float?> VanillaPullSpeed { get; private set; } = new()
     {
         // Pre hardmode
         { ItemID.GrapplingHook, 11f },
@@ -194,70 +196,68 @@ public class HookStats : TooltipStats
         { ItemID.StaticHook, 11f },
     };
 
-    public static HookStats? Get(Item item)
-    {
-        if (!ClientConfig.Instance.HookStatsConfig.Enabled || item.shoot <= ProjectileID.None || !Main.projHook[item.shoot])
-            return null;
+    public override bool Enabled => Config.Enabled;
+    public override bool PressKeyToRevealStats => Config.PressKeyToRevealStats;
+    public override List<ItemDefinition> Whitelist => Config.Whitelist;
+    public override List<ItemDefinition> Blacklist => Config.Blacklist;
 
-        var stats = new HookStats();
+    public override bool ItemMeetsDefaultCondition(Item item)
+    {
+        return item.shoot > ProjectileID.None && Main.projHook[item.shoot];
+    }
+
+    protected override void SetStatsFromItem(Item item)
+    {
         var proj = new Projectile();
         int type = item.type;
         proj.SetDefaults(item.shoot);
 
-        // Reach
-        stats.Reach = proj.ModProjectile?.GrappleRange() ?? VanillaReach.GetValueOrDefault(item.type, -1f);
-
         // Number of hooks
-        int predictedNumHooks = ProjectileID.Sets.SingleGrappleHook[item.shoot] ? 1 : -1;
-        stats.NumHooks = VanillaNumHooks.GetValueOrDefault(type, predictedNumHooks);
+        int? predictedNumHooks = ProjectileID.Sets.SingleGrappleHook[item.shoot] ? 1 : null;
+        NumHooks = VanillaNumHooks.GetValueOrDefault(type, predictedNumHooks);
 
         int numHooks = -1;
         ProjectileLoader.NumGrappleHooks(proj, Main.LocalPlayer, ref numHooks);
         if (numHooks != -1)
-            stats.NumHooks = numHooks;
+            NumHooks = numHooks;
 
         // Latching
         var predictedLatching = ProjectileID.Sets.SingleGrappleHook[item.shoot] ? LatchingMode.Single : LatchingMode.Unknown;
-        stats.Latching = VanillaLatching.GetValueOrDefault(type, predictedLatching);
+        Latching = VanillaLatching.GetValueOrDefault(type, predictedLatching);
+
+        // Reach
+        Reach = proj.ModProjectile?.GrappleRange() ?? VanillaReach.GetValueOrDefault(item.type);
 
         // Shoot speed
-        stats.ShootSpeed = item.shootSpeed;
+        ShootSpeed = item.shootSpeed;
 
         // Retreat speed
-        stats.RetreatSpeed = VanillaRetreatSpeed.GetValueOrDefault(item.type, -1f);
+        RetreatSpeed = VanillaRetreatSpeed.GetValueOrDefault(item.type);
 
         float retreatSpeed = -1f;
         ProjectileLoader.GrappleRetreatSpeed(proj, Main.LocalPlayer, ref retreatSpeed);
         if (retreatSpeed != -1f)
-            stats.RetreatSpeed = retreatSpeed;
+            RetreatSpeed = retreatSpeed;
 
         // Pull speed
-        stats.PullSpeed = VanillaPullSpeed.GetValueOrDefault(item.type, -1f);
+        PullSpeed = VanillaPullSpeed.GetValueOrDefault(item.type);
 
         float pullSpeed = -1f;
         ProjectileLoader.GrapplePullSpeed(proj, Main.LocalPlayer, ref pullSpeed);
         if (pullSpeed != -1f)
-            stats.PullSpeed = pullSpeed;
-
-        return stats;
+            PullSpeed = pullSpeed;
     }
 
-    public override void Apply(List<TooltipLine> tooltips)
+    public override IEnumerable<TooltipLine> GetTooltips()
     {
-        // Reach
-        if (Reach != -1)
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.Reach", (decimal)MathUtils.Round(Reach / 16f, 0.1f)));
-        else
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.ReachUnknown"));
+        if (Config.NumHooksTooltipEnabled)
+        {
+            yield return NumHooks is not null
+                ? TooltipUtils.GetTooltipLine("HookStats.NumHooks", NumHooks.Value)
+                : TooltipUtils.GetTooltipLine("HookStats.NumHooksUnknown");
+        }
 
-        // Number of hooks
-        if (NumHooks != -1)
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.NumHooks", NumHooks));
-        else
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.NumHooksUnknown"));
-
-        // Latching mode
-        tooltips.Add(
+        yield return 
             TooltipUtils.GetTooltipLine(
                 Latching switch
                 {
@@ -266,24 +266,34 @@ public class HookStats : TooltipStats
                     LatchingMode.Simultaneous => "HookStats.LatchingSimultaneous",
                     _                         => "HookStats.LatchingUnknown",
                 }
-            )
-        );
+            );
 
-        // Speeds
-        if (ShootSpeed != -1)
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.ShootSpeed", (decimal)MathUtils.Round(ShootSpeed * MathUtils.PPTToMPH), 0.1f));
-        else
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.ShootSpeedUnknown"));
+        if (Config.ReachTooltipEnabled)
+        {
+            yield return Reach is not null
+                ? TooltipUtils.GetTooltipLine("HookStats.Reach", (Reach.Value / 16f).ToNiceString(1), 0 /* TODO: proper pluralization */)
+                : TooltipUtils.GetTooltipLine("HookStats.ReachUnknown");
+        }
 
-        if (RetreatSpeed != -1)
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.RetreatSpeed", (decimal)MathUtils.Round(RetreatSpeed * MathUtils.PPTToMPH), 0.1f));
-        else
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.RetreatSpeedUnknown"));
+        if (Config.ShootSpeedTooltipEnabled)
+        {
+            yield return ShootSpeed is not null
+                ? TooltipUtils.GetTooltipLine("HookStats.ShootSpeed", (ShootSpeed.Value * MathUtils.PixelsPerTick2MilesPerHour).ToNiceString(1))
+                : TooltipUtils.GetTooltipLine("HookStats.ShootSpeedUnknown");
+        }
 
-        if (PullSpeed != -1)
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.PullSpeed", (decimal)MathUtils.Round(PullSpeed * MathUtils.PPTToMPH), 0.1f));
-        else
-            tooltips.Add(TooltipUtils.GetTooltipLine("HookStats.PullSpeedUnknown"));
+        if (Config.RetreatSpeedTooltipEnabled)
+        {
+            yield return RetreatSpeed is not null
+                ? TooltipUtils.GetTooltipLine("HookStats.RetreatSpeed", (RetreatSpeed.Value * MathUtils.PixelsPerTick2MilesPerHour).ToNiceString(1))
+                : TooltipUtils.GetTooltipLine("HookStats.RetreatSpeedUnknown");
+        }
+
+        if (Config.PullSpeedTooltipEnabled)
+        {
+            yield return PullSpeed is not null
+                ? TooltipUtils.GetTooltipLine("HookStats.PullSpeed", (PullSpeed.Value * MathUtils.PixelsPerTick2MilesPerHour).ToNiceString(1))
+                : TooltipUtils.GetTooltipLine("HookStats.PullSpeedUnknown");
+        }
     }
 }
-*/
